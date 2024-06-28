@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<nav
+  class='container mx-auto flex items-center w-full justify-between p-3
+        md:justify-center'
+>
+  <Image
+    class='relative z-10 md:hidden'
+    width='80'
+    height='70'
+    decoding='async'
+    loading='lazy'
+    src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.61af68aa.png&w=384&q=75'
+    alt=''
+  />
+
+  <button
+    id='hamburger'
+    class='flex flex-col gap-2 items-center justify-center w-6 h-10 relative z-10
+          focus:outline-none
+          md:hidden'
+  >
+    <span class='block w-full h-0.5 bg-current'></span>
+    <span class='block w-full h-0.5 bg-current'></span>
+    <span class='block w-full h-0.5 bg-current'></span>
+  </button>
+
+  <ul
+    id='menu'
+    class='flex flex-col gap-8 translate-x-full transition-transform bg-black text-white fixed inset-0 p-8 justify-center font-bold text-3xl
+          md:bg-transparent md:relative md:translate-x-0 md:gap-7 md:items-center md:flex-row md:text-black md:text-base md:p-0'
+  >
+    <li><a href='/' class='hover:text-primary'>DIRECTORIO</a></li>
+    <li><a href='/' class='hover:text-primary'>EVENTOS</a></li>
+    <li class='hidden
+              md:block'>
+      <a href='/'>
+        <Image
+          width='80'
+          height='70'
+          src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.61af68aa.png&w=384&q=75'
+          alt='Logo'
+        />
+      </a>
+    </li>
+    <li><a href='/' class='hover:text-primary'>PROMOCIONES</a></li>
+    <li><a href='/' class='hover:text-primary'>CONTACTO</a></li>
+  </ul>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger') as HTMLButtonElement;
+    const menu = document.getElementById('menu') as HTMLUListElement;
+
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('translate-x-full');
+      hamburger.classList.toggle('text-white');
+    });
+  });
+</script>
