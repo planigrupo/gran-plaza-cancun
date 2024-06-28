@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<section class='hero min-h-screen grid gap-8 px-8'>
+  <!-- <Image
+    class='people max-w-full mt-auto max-h-[800px] w-auto ml-auto'
+    width='1300'
+    height='1500'
+    decoding='async'
+    loading='lazy'
+    src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FPersonas.878d85c6.png&w=3840&q=75'
+    alt=''
+  /> -->
+
+  <Image
+    class='text w-96'
+    width='1450'
+    height='500'
+    decoding='async'
+    loading='lazy'
+    src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FFrase.64e5aceb.png&w=3840&q=75'
+    alt=''
+  />
+</section>
+
+<style>
+  .hero {
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)
+      ),
+      url('https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FPersonas.878d85c6.png&w=3840&q=75'),
+      url('https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FPortada.c23d115f.png&w=3840&q=80');
+    background-size: cover, contain, cover;
+    background-position:
+      center,
+      -10% bottom,
+      center;
+    background-repeat: no-repeat;
+    grid-template-areas:
+      'text text'
+      'people people';
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 2fr 3fr;
+  }
+
+  .people {
+    grid-area: people;
+  }
+
+  .text {
+    grid-area: text;
+    align-self: end;
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      grid-template-areas:
+        'people text'
+        'people empty';
+      background-position:
+        center,
+        10% bottom,
+        center;
+      grid-template-rows: repeat(2, 1fr);
+    }
+  }
+</style>

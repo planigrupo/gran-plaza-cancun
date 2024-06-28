@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 
 <nav
   class='container mx-auto flex items-center w-full justify-between p-3
-        md:justify-center'
+        md:justify-center absolute top-0 left-0 right-0'
 >
   <Image
     class='relative z-10 md:hidden'
@@ -30,10 +30,14 @@ import { Image } from 'astro:assets';
   <ul
     id='menu'
     class='flex flex-col gap-8 translate-x-full transition-transform bg-black text-white fixed inset-0 p-8 justify-center font-bold text-3xl
-          md:bg-transparent md:relative md:translate-x-0 md:gap-7 md:items-center md:flex-row md:text-black md:text-base md:p-0'
+          md:bg-transparent md:relative md:translate-x-0 md:gap-7 md:items-center md:flex-row md:text-base md:p-0'
   >
-    <li><a href='/' class='hover:text-primary'>DIRECTORIO</a></li>
-    <li><a href='/' class='hover:text-primary'>EVENTOS</a></li>
+    <li>
+      <a href='/' class='transition-colors hover:text-primary'>DIRECTORIO</a>
+    </li>
+    <li>
+      <a href='/' class='transition-colors hover:text-primary'>EVENTOS</a>
+    </li>
     <li class='hidden
               md:block'>
       <a href='/'>
@@ -45,8 +49,12 @@ import { Image } from 'astro:assets';
         />
       </a>
     </li>
-    <li><a href='/' class='hover:text-primary'>PROMOCIONES</a></li>
-    <li><a href='/' class='hover:text-primary'>CONTACTO</a></li>
+    <li>
+      <a href='/' class='transition-colors hover:text-primary'>PROMOCIONES</a>
+    </li>
+    <li>
+      <a href='/' class='transition-colors hover:text-primary'>CONTACTO</a>
+    </li>
   </ul>
 </nav>
 
