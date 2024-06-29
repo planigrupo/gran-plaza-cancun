@@ -1,0 +1,19 @@
+<div class='carousel overflow-hidden'>
+  <div class='flex'>
+    <slot />
+  </div>
+</div>
+
+<script>
+  import EmblaCarousel, { type EmblaOptionsType } from 'embla-carousel';
+  import Autoplay from 'embla-carousel-autoplay';
+
+  const plugins = [Autoplay({ delay: 2000 })];
+  const emblaNode = document.querySelector('.carousel') as HTMLElement;
+  const options: EmblaOptionsType = {
+    align: 'start',
+    loop: true,
+    slidesToScroll: 'auto',
+  };
+  EmblaCarousel(emblaNode, options, plugins);
+</script>

@@ -39,4 +39,20 @@ const { title } = Astro.props;
     font-style: normal;
     font-display: swap;
   }
+
+  .slide {
+    flex: 0 0 50%;
+    min-width: 0;
+  }
+
+  .slide h3::before {
+    border-radius: 50%;
+    border-width: 3px;
+    border-style: solid;
+    content: '';
+    display: inline-block;
+    height: 14px;
+    margin-right: 5px;
+    width: 14px;
+  }
 </style>

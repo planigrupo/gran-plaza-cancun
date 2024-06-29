@@ -1,10 +1,29 @@
 ---
+import Carousel from '@components/common/Carousel.astro';
+import CarouselSlide from '@components/common/CarouselSlide.astro';
 import TitleDivider from '@components/common/TitleDivider.astro';
-import { Image } from 'astro:assets';
 ---
 
 <section class='min-h-screen'>
   <div class='container'>
-    <TitleDivider>Hola</TitleDivider>
+    <TitleDivider class='text-gray-500'>Hola</TitleDivider>
+    <Carousel>
+      <CarouselSlide
+        imageUrl='https://www.cancungranplaza.com/_next/image?url=%2Fmultimedia%2FEvento-3.jpg&w=640&q=75'
+        title='Hola'
+      />
+      <CarouselSlide
+        imageUrl='https://www.cancungranplaza.com/_next/image?url=%2Fmultimedia%2FEvento-3.jpg&w=640&q=75'
+        title='Hola'
+      />
+      <CarouselSlide
+        imageUrl='https://www.cancungranplaza.com/_next/image?url=%2Fmultimedia%2FEvento-3.jpg&w=640&q=75'
+        title='Hola'
+      />
+      <CarouselSlide
+        imageUrl='https://www.cancungranplaza.com/_next/image?url=%2Fmultimedia%2FEvento-3.jpg&w=640&q=75'
+        title='Hola'
+      />
+    </Carousel>
   </div>
 </section>

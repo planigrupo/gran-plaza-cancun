@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  imageUrl: string;
+  title: string;
+}
+
+const { imageUrl, title } = Astro.props;
+---
+
+<div class='slide'>
+  <Image width={200} height={200} src={imageUrl} alt={title} class='w-full' />
+
+  {
+    title && (
+      <h3 class='text-secondary font-bold text-xl [&::before]:border-primary text-center'>
+        {title}
+      </h3>
+    )
+  }
+</div>
+
+<style>
+  .slide {
+    flex: 0 0 50%;
+    min-width: 0;
+  }
+
+  .slide h3::before {
+    border-radius: 50%;
+    border-width: 3px;
+    border-style: solid;
+    content: '';
+    display: inline-block;
+    height: 14px;
+    margin-right: 5px;
+    width: 14px;
+  }
+</style>
