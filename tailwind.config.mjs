@@ -4,6 +4,9 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
+    borderRadius: {
+      'lg': '2rem',
+    },
     extend: {
       colors: {
         primary: '#468bc2',

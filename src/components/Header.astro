@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import logo from '../images/logo.png';
 ---
 
 <nav
@@ -12,8 +13,8 @@ import { Image } from 'astro:assets';
     height='70'
     decoding='async'
     loading='lazy'
-    src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.61af68aa.png&w=384&q=75'
-    alt=''
+    src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.61af68aa.png&w=256&q=75'
+    alt='Logo'
   />
 
   <button
@@ -42,9 +43,11 @@ import { Image } from 'astro:assets';
               md:block'>
       <a href='/'>
         <Image
-          width='80'
-          height='70'
-          src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.61af68aa.png&w=384&q=75'
+          width='125'
+          height='100'
+          decoding='async'
+          loading='lazy'
+          src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.61af68aa.png&w=256&q=75'
           alt='Logo'
         />
       </a>
@@ -53,7 +56,8 @@ import { Image } from 'astro:assets';
       <a href='/' class='transition-colors hover:text-primary'>PROMOCIONES</a>
     </li>
     <li>
-      <a href='/' class='transition-colors hover:text-primary'>CONTACTO</a>
+      <a href='#footer' class='transition-colors hover:text-primary'>CONTACTO</a
+      >
     </li>
   </ul>
 </nav>
