@@ -9,10 +9,11 @@ const { class: className, ...rest } = Astro.props;
     'items-center',
     'text-lg',
     'font-bold',
+    'whitespace-nowrap',
     'md:text-3xl',
     className,
   ]}
 >
-  Eventos
+  <slot />
   <span class='w-full h-px bg-current'></span>
 </h2>
