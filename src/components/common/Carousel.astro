@@ -1,4 +1,11 @@
-<div class='carousel overflow-hidden'>
+---
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div class:list={[className]} class='carousel overflow-hidden'>
   <div class='flex'>
     <slot />
   </div>
