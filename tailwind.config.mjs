@@ -5,7 +5,14 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     borderRadius: {
-      'lg': '2rem',
+      lg: '2rem',
+    },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '2rem',
+        sm: '4rem',
+      },
     },
     extend: {
       colors: {

@@ -1,25 +1,18 @@
 ---
-import logoGranPlaza from '../images/logo-gran-plaza.png';
-import logoPlanigrupo from '../images/logo-planigrupo.png';
+import Logo from '@images/logo.png';
+import LogoPlaniGrupo from '@images/logo-bw-pg.png';
+import { Image } from 'astro:assets';
 ---
 
 <footer class='bg-black text-white py-6'>
   <div
-    class='container mx-auto px-4 max-w-screen-lg flex flex-col items-center md:flex-row md:justify-between'
+    class='container max-w-screen-lg flex flex-col items-center md:flex-row md:justify-between'
   >
     <div class='flex items-center space-x-4 mb-4 md:mb-0'>
-      <img
-        src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.61af68aa.png&w=640&q=75'
-        alt='Logo Gran Plaza'
-        class='h-12 md:h-16'
-      />
+      <Image src={Logo} alt='Logo Gran Plaza' class='w-28' />
       <div class='border-l border-white h-12 md:h-16 ml-4'></div>
       <div class='flex flex-col items-center md:items-start ml-4'>
-        <img
-          src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo_bw.81d4a332.png&w=96&q=75'
-          alt='Logo Planigrupo'
-          class='h-12 md:h-16'
-        />
+        <Image src={LogoPlaniGrupo} alt='Logo Planigrupo' class='w-28' />
       </div>
     </div>
     <nav

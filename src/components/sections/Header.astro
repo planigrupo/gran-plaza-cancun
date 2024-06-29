@@ -1,19 +1,17 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../images/logo.png';
+import Logo from '@images/logo.png';
 ---
 
 <nav
-  class='container mx-auto flex items-center w-full justify-between p-3
+  class='container flex items-center w-full justify-between py-3
         md:justify-center absolute top-0 left-0 right-0'
 >
   <Image
     class='relative z-10 md:hidden'
     width='80'
     height='70'
-    decoding='async'
-    loading='lazy'
-    src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.61af68aa.png&w=256&q=75'
+    src={Logo}
     alt='Logo'
   />
 
