@@ -1,0 +1,15 @@
+---
+interface Props {
+  color?: string;
+}
+
+const { color = 'gray-600' } = Astro.props;
+---
+
+<h2
+  class=`flex gap-4 items-center text-lg text-${color} font-bold
+          md:text-3xl`
+>
+  Eventos
+  <span class=`w-full h-px bg-${color}`></span>
+</h2>
