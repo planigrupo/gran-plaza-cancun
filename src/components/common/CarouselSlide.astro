@@ -34,11 +34,11 @@ const { imageUrl, title } = Astro.props;
     flex: 0 0 calc(100% / var(--slide-items));
     min-width: 0;
 
-    @media (width > 768px) {
+    @media (width >=768px) {
       --slide-items: 2;
     }
 
-    @media (width > 1024px) {
+    @media (width >= 1024px) {
       --slide-items: 3;
     }
   }

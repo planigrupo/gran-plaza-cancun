@@ -3,26 +3,18 @@ import FloatingElement from '@components/common/FloatingElement.astro';
 import { Image } from 'astro:assets';
 ---
 
-<section class='hero grid gap-8 py-40 px-8 relative'>
-  <!-- <Image
-    class='people max-w-full mt-auto max-h-[800px] w-auto ml-auto'
-    width='1300'
-    height='1500'
-    decoding='async'
-    loading='lazy'
-    src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FPersonas.878d85c6.png&w=3840&q=75'
-    alt=''
-  /> -->
-
-  <Image
-    class='text w-96'
-    width='1450'
-    height='500'
-    decoding='async'
-    loading='lazy'
-    src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FFrase.64e5aceb.png&w=3840&q=75'
-    alt=''
-  />
+<section class='hero pt-24 pb-96 md:py-64 px-8 relative'>
+  <div class='container p-0 md:grid md:grid-cols-2 md:gap-8'>
+    <Image
+      class='md:col-start-2 md:mb-14 w-96'
+      width='1450'
+      height='500'
+      decoding='async'
+      loading='lazy'
+      src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FFrase.64e5aceb.png&w=3840&q=75'
+      alt=''
+    />
+  </div>
 
   <FloatingElement />
 </section>
@@ -36,17 +28,16 @@ import { Image } from 'astro:assets';
       ),
       url('https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FPersonas.878d85c6.png&w=3840&q=75'),
       url('https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FPortada.c23d115f.png&w=3840&q=80');
-    background-size: cover, contain, cover;
+    background-size:
+      cover,
+      auto 70%,
+      cover;
     background-position:
       center,
-      -10% bottom,
+      center bottom,
       center;
     background-repeat: no-repeat;
-    grid-template-areas:
-      'text text'
-      'people people';
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 2fr 3fr;
   }
 
   .people {
@@ -58,16 +49,22 @@ import { Image } from 'astro:assets';
     align-self: end;
   }
 
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     .hero {
-      grid-template-areas:
-        'people text'
-        'people empty';
+      background-size: cover, contain, cover;
       background-position:
         center,
-        10% bottom,
+        calc(50% - 250px) bottom,
         center;
-      grid-template-rows: repeat(2, 1fr);
+    }
+  }
+
+  @media (width >= 1024px) {
+    .hero {
+      background-position:
+        center,
+        calc(50% - 300px) bottom,
+        center;
     }
   }
 </style>
