@@ -4,7 +4,7 @@ import Logo from '@images/logo.png';
 ---
 
 <nav
-  class='container flex items-center w-full justify-between py-3
+  class='container flex items-center w-full justify-between py-4
         md:justify-center absolute top-0 left-0 right-0 z-50'
 >
   <Image
@@ -17,9 +17,9 @@ import Logo from '@images/logo.png';
 
   <button
     id='hamburger'
-    class='flex flex-col gap-2 items-center justify-center w-6 h-10 relative z-10
-          focus:outline-none
-          md:hidden'
+    class='flex flex-col gap-2 items-center justify-center w-8 h-10 relative z-10 text-white
+    focus:outline-none
+    md:hidden'
   >
     <span class='block w-full h-0.5 bg-current'></span>
     <span class='block w-full h-0.5 bg-current'></span>
@@ -28,14 +28,15 @@ import Logo from '@images/logo.png';
 
   <ul
     id='menu'
-    class='flex flex-col gap-8 translate-x-full transition-transform bg-black text-white fixed inset-0 p-8 justify-center text-3xl
-          md:bg-transparent md:relative md:translate-x-0 md:gap-7 md:items-center md:flex-row md:text-base md:p-0'
+    class='flex flex-col gap-4 translate-x-full transition-transform ease-in-out bg-black text-white fixed inset-0 p-8 justify-center text-3xl font-bold uppercase
+          md:bg-transparent md:relative md:translate-x-0 md:gap-8 md:items-center md:flex-row md:text-base md:p-0 md:font-medium md:normal-case'
   >
     <li>
       <a href='/' class='transition-colors hover:text-primary'>Directorio</a>
     </li>
     <li>
-      <a href='/' class='transition-colors hover:text-primary'>Eventos</a>
+      <a href='/eventos' class='transition-colors hover:text-primary'>Eventos</a
+      >
     </li>
     <li class='hidden
               md:block'>
@@ -59,6 +60,5 @@ import Logo from '@images/logo.png';
 
   hamburger.addEventListener('click', () => {
     menu.classList.toggle('translate-x-full');
-    hamburger.classList.toggle('text-white');
   });
 </script>
