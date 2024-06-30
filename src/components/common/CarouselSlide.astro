@@ -29,8 +29,18 @@ const { imageUrl, title } = Astro.props;
 
 <style>
   .slide {
-    flex: 0 0 33%;
+    --slide-items: 1;
+
+    flex: 0 0 calc(100% / var(--slide-items));
     min-width: 0;
+
+    @media (width > 768px) {
+      --slide-items: 2;
+    }
+
+    @media (width > 1024px) {
+      --slide-items: 3;
+    }
   }
 
   .slide h3::before {
