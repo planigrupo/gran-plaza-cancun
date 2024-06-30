@@ -21,8 +21,7 @@ export default {
         accent: '#969696',
       },
       fontFamily: {
-        sans: ['Averta', ...defaultTheme.fontFamily.sans],
-        title: ['Montserrat'],
+        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
       },
     },
   },

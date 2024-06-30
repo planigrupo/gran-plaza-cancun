@@ -16,7 +16,8 @@ let buttonClass = className;
 
 const variantClasses: Record<string, string> = {
   primary: 'bg-primary border-primary hover:bg-transparent hover:text-primary',
-  secondary: 'bg-gray-500 hover:bg-gray-600', // TODO: Change this if necessary
+  secondary:
+    'bg-secondary border-secondary hover:bg-transparent hover:text-secondary', // TODO: Change this if necessary
   danger: 'bg-red-500 hover:bg-red-600', // TODO: Change this if necessary
 };
 
@@ -29,7 +30,7 @@ if (variantClasses[variant]) {
   href={href}
   target={target}
   class:list={buttonClass}
-  class='cursor-pointer transition-colors border-2 bg-primary py-2 px-6 rounded-md text-white font-semibold no-underline focus:outline-none inline-block'
+  class='cursor-pointer uppercase transition-colors border-2 bg-primary py-2 px-8 rounded-md text-white font-semibold no-underline focus:outline-none inline-block'
 >
   <slot />
 </a>
