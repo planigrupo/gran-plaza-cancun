@@ -1,8 +1,9 @@
 ---
+import FloatingElement from '@components/common/FloatingElement.astro';
 import { Image } from 'astro:assets';
 ---
 
-<section class='hero min-h-screen grid gap-8 px-8'>
+<section class='hero grid gap-8 py-40 px-8 relative'>
   <!-- <Image
     class='people max-w-full mt-auto max-h-[800px] w-auto ml-auto'
     width='1300'
@@ -22,6 +23,8 @@ import { Image } from 'astro:assets';
     src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FFrase.64e5aceb.png&w=3840&q=75'
     alt=''
   />
+
+  <FloatingElement />
 </section>
 
 <style>
