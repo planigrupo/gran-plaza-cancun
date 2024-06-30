@@ -3,14 +3,20 @@ import { Image } from 'astro:assets';
 
 interface Props {
   imageUrl: string;
-  title: string;
+  title?: string;
 }
 
 const { imageUrl, title } = Astro.props;
 ---
 
-<div class='slide'>
-  <Image width={200} height={200} src={imageUrl} alt={title} class='w-full' />
+<div class='slide pl-4'>
+  <Image
+    width={200}
+    height={200}
+    src={imageUrl}
+    alt={title || ''}
+    class='w-full rounded-md'
+  />
 
   {
     title && (
@@ -23,7 +29,7 @@ const { imageUrl, title } = Astro.props;
 
 <style>
   .slide {
-    flex: 0 0 50%;
+    flex: 0 0 33%;
     min-width: 0;
   }
 

@@ -1,14 +1,15 @@
 ---
+import Button from '@components/common/Button.astro';
+
 interface Props {
   class?: string;
 }
 const { class: className } = Astro.props;
 ---
 
-<h2
-  class:list={[className]}
-  class='flex gap-4 items-center text-lg font-bold whitespace-nowrap md:text-3xl'
->
-  <slot />
-  <span class='w-full h-px bg-current'></span>
-</h2>
+<div class:list={[className]} class='items-center flex justify-between'>
+  <h2 class='text-lg font-bold whitespace-nowrap md:text-5xl'>
+    <slot />
+  </h2>
+  <Button variant='primary' href='#'>Ver Mas</Button>
+</div>

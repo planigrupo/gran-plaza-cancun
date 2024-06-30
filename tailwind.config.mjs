@@ -4,9 +4,6 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
-    borderRadius: {
-      lg: '2rem',
-    },
     container: {
       center: true,
       padding: {
@@ -15,6 +12,9 @@ export default {
       },
     },
     extend: {
+      borderRadius: {
+        footer: '2rem',
+      },
       colors: {
         primary: '#468bc2',
         secondary: '#ea0a72',
