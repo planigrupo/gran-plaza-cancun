@@ -22,6 +22,7 @@ export default {
       },
       fontFamily: {
         sans: ['Averta', ...defaultTheme.fontFamily.sans],
+        title: ['Montserrat'],
       },
     },
   },
