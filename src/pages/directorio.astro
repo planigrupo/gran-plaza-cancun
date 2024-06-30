@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import Layout from 'src/layouts/Layout.astro';
+---
+
+<Layout title='Directorio'>
+  <div class='bg-black py-14 md:py-20'>
+    <div class='container'>
+      <h1 class='text-white font-black text-3xl'>Title</h1>
+    </div>
+  </div>
+
+  <section>
+    <div class='container'>
+      <div
+        class='grid grid-cols-2 gap-px p-px bg-gray-200
+                md:grid-cols-4 lg:grid-cols-5'
+      >
+        <div
+          class='bg-white aspect-square flex flex-col items-center justify-center p-12 grayscale transition-all
+          hover:grayscale-0'
+        >
+          <Image
+            src='https://www.cancungranplaza.com/_next/image?url=%2Fmultimedia%2Flogo_9_McDonalds.png&w=640&q=75'
+            alt='descriptive text'
+            width='200'
+            height='150'
+          />
+          <h4>McDonald's</h4>
+        </div>
+        <div
+          class='bg-white aspect-square flex flex-col items-center justify-center p-12 grayscale transition-all
+          hover:grayscale-0'
+        >
+          <Image
+            src='https://www.cancungranplaza.com/_next/image?url=%2Fmultimedia%2Flogo_9_McDonalds.png&w=640&q=75'
+            alt='descriptive text'
+            width='200'
+            height='150'
+          />
+        </div>
+        <div
+          class='bg-white aspect-square flex flex-col items-center justify-center p-12 grayscale transition-all
+          hover:grayscale-0'
+        >
+          <Image
+            src='https://www.cancungranplaza.com/_next/image?url=%2Fmultimedia%2Flogo_9_McDonalds.png&w=640&q=75'
+            alt='descriptive text'
+            width='200'
+            height='150'
+          />
+        </div>
+        <div
+          class='bg-white aspect-square flex flex-col items-center justify-center p-12 grayscale transition-all
+          hover:grayscale-0'
+        >
+          <Image
+            src='https://www.cancungranplaza.com/_next/image?url=%2Fmultimedia%2Flogo_9_McDonalds.png&w=640&q=75'
+            alt='descriptive text'
+            width='200'
+            height='150'
+          />
+        </div>
+        <div
+          class='bg-white aspect-square flex flex-col items-center justify-center p-12 grayscale transition-all
+          hover:grayscale-0'
+        >
+          <Image
+            src='https://www.cancungranplaza.com/_next/image?url=%2Fmultimedia%2Flogo_9_McDonalds.png&w=640&q=75'
+            alt='descriptive text'
+            width='200'
+            height='150'
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
