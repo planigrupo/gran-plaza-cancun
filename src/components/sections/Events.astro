@@ -2,6 +2,7 @@
 import Button from '@components/common/Button.astro';
 import Carousel from '@components/common/Carousel.astro';
 import CarouselSlide from '@components/common/CarouselSlide.astro';
+import LeftElement from '@components/common/LeftElement.astro';
 import TitleDivider from '@components/common/TitleDivider.astro';
 
 interface Props {
@@ -31,4 +32,5 @@ const { class: className } = Astro.props;
       <Button variant='secondary' href='#'>Ver Mas</Button>
     </div>
   </div>
+  <LeftElement />
 </section>

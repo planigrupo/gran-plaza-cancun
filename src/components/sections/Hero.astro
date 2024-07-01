@@ -1,6 +1,9 @@
 ---
-import FloatingElement from '@components/common/FloatingElement.astro';
+import RightElement from '@components/common/RightElement.astro';
 import { Image } from 'astro:assets';
+import Text from '@images/hero-text.png';
+import Persons from '@images/personas.png';
+import HeroBackground from '@images/bg-hero.png';
 ---
 
 <section class='hero pt-32 pb-[32rem] md:py-72 px-8 relative'>
@@ -11,12 +14,12 @@ import { Image } from 'astro:assets';
       height='500'
       decoding='async'
       loading='lazy'
-      src='https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FFrase.64e5aceb.png&w=3840&q=75'
+      src={Text}
       alt=''
     />
   </div>
 
-  <FloatingElement />
+  <RightElement />
 </section>
 
 <style>
