@@ -1,4 +1,18 @@
-export const stores = [
+interface Store {
+  title: string;
+  imagePath: string;
+  alt: string;
+  horario: string;
+  categoria:
+    | 'Restaurantes'
+    | 'Ropa'
+    | 'Electronicos'
+    | 'Salud'
+    | 'Entretenimiento'
+    | 'Otros';
+}
+
+export const stores: Store[] = [
   {
     title: 'McDonals',
     imagePath: 'logo_McDonalds.png',

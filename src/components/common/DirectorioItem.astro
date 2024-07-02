@@ -2,30 +2,15 @@
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
-const CATEGORY_COLORS = {
-  Restaurantes: 'bg-red-500',
-  Ropa: 'bg-blue-500',
-  Electronicos: 'bg-green-500',
-  Salud: 'bg-yellow-500',
-  Entretenimiento: 'bg-purple-500',
-  Otros: 'bg-gray-500',
-};
-
 interface Props {
   imagePath: string;
   title: string;
-  categoria:
-    | 'Restaurantes'
-    | 'Ropa'
-    | 'Electronicos'
-    | 'Salud'
-    | 'Entretenimiento'
-    | 'Otros';
+  categoria: string;
+  color: string;
   horario: string;
 }
 
-const { imagePath, title, categoria, horario } = Astro.props;
-const categoryColor = CATEGORY_COLORS[categoria] || 'bg-gray-500';
+const { imagePath, title, categoria, color, horario } = Astro.props;
 const relativePath = '/src/images/stores/' + imagePath;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -58,14 +43,14 @@ if (!images[relativePath])
   />
   <div class='absolute inset-0 flex flex-col justify-between items-start'>
     <span
-      class:list={[categoryColor]}
+      class:list={[color]}
       class='py-2 px-4 mt-4 ml-auto text-sm font-semibold rounded-s-md text-white'
     >
       {categoria}
     </span>
     <p
       class=`py-2 px-4 mb-4 mr-4 text-sm text-white opacity-0 transition-all font-semibold rounded-e-md
-      group-hover:opacity-100 ${categoryColor}`
+      group-hover:opacity-100 ${color}`
       set:html={horario}
     >
       {

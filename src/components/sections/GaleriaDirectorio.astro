@@ -2,6 +2,15 @@
 import DirectorioItem from '@components/common/DirectorioItem.astro';
 import { stores } from 'src/data/stores.js';
 
+const CATEGORY_COLORS = {
+  Restaurantes: 'bg-red-500',
+  Ropa: 'bg-blue-500',
+  Electronicos: 'bg-green-500',
+  Salud: 'bg-yellow-500',
+  Entretenimiento: 'bg-purple-500',
+  Otros: 'bg-gray-500',
+};
+
 interface Props {
   class: string;
 }
@@ -17,7 +26,11 @@ const { class: className } = Astro.props;
               lg:grid-cols-4
               xl:grid-cols-5'
     >
-      {stores.map((store) => <DirectorioItem {...store} />)}
+      {
+        stores.map((store) => (
+          <DirectorioItem color={CATEGORY_COLORS[store.categoria]} {...store} />
+        ))
+      }
     </div>
   </div>
 </section>
