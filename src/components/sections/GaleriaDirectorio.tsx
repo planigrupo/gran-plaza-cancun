@@ -39,7 +39,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
 
   const fuseOptions = {
     includeScore: true,
-    threshold: 0.5,
+    threshold: 0.4,
     // Ajusta las keys según las propiedades de tus objetos Store
     keys: ['title'],
   };
