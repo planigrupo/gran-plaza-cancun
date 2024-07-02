@@ -32,11 +32,11 @@ import { stores } from 'src/data/stores.js';
                 height={150}
               />
               <div class='absolute inset-0 flex flex-col justify-between items-start'>
-                <h2 class='py-2 px-4 mt-4 bg-gray-200 text-sm font-semibold rounded-e-md'>
+                <span class='py-2 px-4 mt-4 ml-auto bg-gray-200 text-sm font-semibold rounded-s-md'>
                   {store.categoria}
-                </h2>
+                </span>
                 <p
-                  class='py-2 px-4 mb-4 ml-auto bg-secondary text-sm text-white opacity-0 transition-all font-semibold rounded-s-md
+                  class='py-2 px-4 mb-4 mr-4 bg-secondary text-sm text-white opacity-0 transition-all font-semibold rounded-e-md
                   group-hover:opacity-100'
                   set:html={store.horario}
                 >
