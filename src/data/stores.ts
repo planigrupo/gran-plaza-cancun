@@ -1,4 +1,4 @@
-interface Store {
+export interface Store {
   title: string;
   imagePath: string;
   alt: string;

@@ -1,10 +1,15 @@
 ---
 import Layout from 'src/layouts/Layout.astro';
-import GaleriaDirectorio from '@components/sections/GaleriaDirectorio.astro';
+import GaleriaDirectorio from '@components/sections/GaleriaDirectorio';
 import PageHero from '@components/common/PageHero.astro';
+import { stores } from 'src/data/stores.js';
 ---
 
 <Layout title='Directorio'>
   <PageHero title='Directorio' />
-  <GaleriaDirectorio class='py-12 md:py-16 lg:py-24' />
+  <GaleriaDirectorio
+    client:visible
+    className='py-12 md:py-16 lg:py-24'
+    stores={stores}
+  />
 </Layout>
