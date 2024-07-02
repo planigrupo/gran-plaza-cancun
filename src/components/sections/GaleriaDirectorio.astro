@@ -1,0 +1,17 @@
+---
+import DirectorioItem from '@components/common/DirectorioItem.astro';
+import { stores } from 'src/data/stores.js';
+---
+
+<section>
+  <div class='container'>
+    <div
+      class='grid grid-cols-2 gap-px
+              md:grid-cols-3
+              lg:grid-cols-4
+              xl:grid-cols-5'
+    >
+      {stores.map((store) => <DirectorioItem {...store} />)}
+    </div>
+  </div>
+</section>

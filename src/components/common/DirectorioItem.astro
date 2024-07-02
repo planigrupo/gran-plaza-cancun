@@ -1,0 +1,58 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  imagePath: string;
+  title: string;
+  categoria: string;
+  horario: string;
+}
+
+const { imagePath, title, categoria, horario } = Astro.props;
+
+/**
+ * Constructs the relative path to the image.
+ */
+const relativePath = '/src/images/stores/' + imagePath;
+
+/**
+ * Imports all image metadata from the specified glob pattern.
+ */
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/images/stores/*.{jpeg,jpg,png,gif}'
+);
+
+if (!images[relativePath])
+  throw new Error(
+    `"${relativePath}" does not exist in glob: "/src/images/stores/*.{jpeg,jpg,png,gif}"`
+  );
+---
+
+<div
+  class='group bg-white outline outline-1 outline-gray-200 aspect-square flex flex-col items-center relative
+                    justify-center p-8 grayscale transition hover:grayscale-0'
+>
+  <Image
+    src={images[relativePath]()}
+    alt={`${title}-logo`}
+    width={200}
+    height={150}
+  />
+  <div class='absolute inset-0 flex flex-col justify-between items-start'>
+    <span
+      class='py-2 px-4 mt-4 ml-auto bg-gray-200 text-sm font-semibold rounded-s-md'
+    >
+      {categoria}
+    </span>
+    <p
+      class='py-2 px-4 mb-4 mr-4 bg-secondary text-sm text-white opacity-0 transition-all font-semibold rounded-e-md
+                group-hover:opacity-100'
+      set:html={horario}
+    >
+      {
+        /* El contenido de `horario` se insertará aquí, interpretando HTML si lo contiene */
+      }
+    </p>
+  </div>
+</div>

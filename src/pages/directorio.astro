@@ -1,7 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from 'src/layouts/Layout.astro';
-import { stores } from 'src/data/stores.js';
+import GaleriaDirectorio from '@components/sections/GaleriaDirectorio.astro';
 ---
 
 <Layout title='Directorio'>
@@ -10,43 +9,5 @@ import { stores } from 'src/data/stores.js';
       <h1 class='text-white font-black text-3xl'>Title</h1>
     </div>
   </div>
-
-  <section>
-    <div class='container'>
-      <div
-        class='grid grid-cols-2 gap-px
-                md:grid-cols-3
-                lg:grid-cols-4
-                xl:grid-cols-5'
-      >
-        {
-          stores.map((store) => (
-            <div
-              class='group bg-white outline outline-1 outline-gray-200 aspect-square flex flex-col items-center relative
-                      justify-center p-8 grayscale transition hover:grayscale-0'
-            >
-              <Image
-                src={store.src}
-                alt={`${store.title}-logo`}
-                width={200}
-                height={150}
-              />
-              <div class='absolute inset-0 flex flex-col justify-between items-start'>
-                <span class='py-2 px-4 mt-4 ml-auto bg-gray-200 text-sm font-semibold rounded-s-md'>
-                  {store.categoria}
-                </span>
-                <p
-                  class='py-2 px-4 mb-4 mr-4 bg-secondary text-sm text-white opacity-0 transition-all font-semibold rounded-e-md
-                  group-hover:opacity-100'
-                  set:html={store.horario}
-                >
-                  {/* El contenido de `store.horario` se insertará aquí, interpretando HTML si lo contiene */}
-                </p>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+  <GaleriaDirectorio />
 </Layout>
