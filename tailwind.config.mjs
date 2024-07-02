@@ -12,6 +12,9 @@ export default {
       },
     },
     extend: {
+      transitionDuration: {
+        DEFAULT: '500ms',
+      },
       borderRadius: {
         footer: '2rem',
       },

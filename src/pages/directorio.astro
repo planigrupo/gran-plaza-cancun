@@ -14,19 +14,34 @@ import { stores } from 'src/data/stores.js';
   <section>
     <div class='container'>
       <div
-        class='grid grid-cols-2 gap-px p-px bg-gray-200
-                md:grid-cols-4 lg:grid-cols-5'
+        class='grid grid-cols-2 gap-px
+                md:grid-cols-3
+                lg:grid-cols-4
+                xl:grid-cols-5'
       >
         {
           stores.map((store) => (
             <div
-              class='bg-white aspect-square flex flex-col items-center 
-                      justify-center p-12 grayscale transition-all hover:grayscale-0'
+              class='group bg-white outline outline-1 outline-gray-200 aspect-square flex flex-col items-center relative
+                      justify-center p-8 grayscale transition hover:grayscale-0'
             >
-              <Image src={store.src} alt={store.alt} width={200} height={150} />
-              <div>
-                <h2>{store.categoria}</h2>
-                <p>{store.horario}</p>
+              <Image
+                src={store.src}
+                alt={`${store.title}-logo`}
+                width={200}
+                height={150}
+              />
+              <div class='absolute inset-0 flex flex-col justify-between items-start'>
+                <h2 class='py-2 px-4 mt-4 bg-gray-200 text-sm font-semibold rounded-e-md'>
+                  {store.categoria}
+                </h2>
+                <p
+                  class='py-2 px-4 mb-4 ml-auto bg-secondary text-sm text-white opacity-0 transition-all font-semibold rounded-s-md
+                  group-hover:opacity-100'
+                  set:html={store.horario}
+                >
+                  {/* El contenido de `store.horario` se insertará aquí, interpretando HTML si lo contiene */}
+                </p>
               </div>
             </div>
           ))
