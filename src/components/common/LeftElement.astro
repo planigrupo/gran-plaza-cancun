@@ -3,7 +3,9 @@ import { Image } from 'astro:assets';
 import LeftImage from '@images/element-2.png';
 ---
 
-<div class='absolute left-0 bottom-0 flex justify-start translate-y-1/3'>
+<div
+  class='absolute left-0 bottom-0 flex justify-start translate-y-1/3 pointer-events-none'
+>
   <Image
     class='w-[50%] max-w-7xl'
     src={LeftImage}

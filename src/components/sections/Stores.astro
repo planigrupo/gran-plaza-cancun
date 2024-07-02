@@ -1,17 +1,19 @@
 ---
 import TitleDivider from '@components/common/TitleDivider.astro';
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
+import background from '@images/bg-shops.png';
+
+const optimizedBackgroundImage = await getImage({ src: background });
 ---
 
-<section class='hero min-h-screen'>
+<section
+  class=`min-h-screen bg-cover bg-center bg-no-repeat`
+  style=`background-image: url("${optimizedBackgroundImage.src}")`
+>
   <div class='container'>
     <TitleDivider class='text-white mb-8 py-12 md:py-16 lg:py-28'
       >Nuestras tiendas</TitleDivider
     >
   </div>
 </section>
-<style>
-  .hero {
-    background-image: url('https://www.cancungranplaza.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FLocatario.db4af14c.png&w=1920&q=80');
-  }
-</style>
+<style></style>

@@ -1,4 +1,8 @@
 ---
+import { getImage } from 'astro:assets';
+import background from '@images/bg-shops.png';
+
+const optimizedBackgroundImage = await getImage({ src: background });
 interface Props {
   title: string;
 }
@@ -6,8 +10,11 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<section class='bg-black py-14
-md:pt-56 md:pb-44'>
+<section
+  class='bg-black py-14 bg-cover bg-center bg-no-repeat
+md:pt-40 md:pb-28'
+  style=`background-image: url("${optimizedBackgroundImage.src}")`
+>
   <div class='container'>
     <h1 class='text-white font-black text-8xl text-center'>{title}</h1>
   </div>

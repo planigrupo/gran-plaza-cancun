@@ -3,7 +3,9 @@ import { Image } from 'astro:assets';
 import RightImage from '@images/element-1.png';
 ---
 
-<div class='absolute right-0 bottom-0 flex justify-end translate-y-1/4'>
+<div
+  class='absolute right-0 bottom-0 flex justify-end translate-y-1/4 pointer-events-none'
+>
   <Image
     class='w-[70%] max-w-7xl'
     src={RightImage}
