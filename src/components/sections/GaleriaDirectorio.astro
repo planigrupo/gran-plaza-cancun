@@ -1,9 +1,15 @@
 ---
 import DirectorioItem from '@components/common/DirectorioItem.astro';
 import { stores } from 'src/data/stores.js';
+
+interface Props {
+  class: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
-<section>
+<section class:list={[className]}>
   <div class='container'>
     <div
       class='grid grid-cols-2 gap-px

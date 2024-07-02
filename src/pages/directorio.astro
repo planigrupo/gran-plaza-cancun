@@ -1,13 +1,10 @@
 ---
 import Layout from 'src/layouts/Layout.astro';
 import GaleriaDirectorio from '@components/sections/GaleriaDirectorio.astro';
+import PageHero from '@components/common/PageHero.astro';
 ---
 
 <Layout title='Directorio'>
-  <div class='bg-black py-14 md:py-20'>
-    <div class='container'>
-      <h1 class='text-white font-black text-3xl'>Title</h1>
-    </div>
-  </div>
-  <GaleriaDirectorio />
+  <PageHero title='Directorio' />
+  <GaleriaDirectorio class='py-12 md:py-16 lg:py-24' />
 </Layout>
