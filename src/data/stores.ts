@@ -194,7 +194,7 @@ export const stores: Store[] = [
   },
   {
     title: 'Optica Kriztel',
-    imagePath: 'logo-opticaKriztel.png',
+    imagePath: 'logo-opticaKriztel.jpg',
     alt: 'Logo Optica Kriztel',
     horario: `11:00 AM - 8:00 PM`,
     categoria: 'Ópticas, salud y belleza',
