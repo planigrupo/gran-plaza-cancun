@@ -4,11 +4,15 @@ import DirectorioItem from '@components/common/DirectorioItem';
 import type { Store } from 'src/data/stores';
 
 const CATEGORY_COLORS = {
-  Restaurantes: 'bg-red-500',
-  Ropa: 'bg-blue-500',
-  Electronicos: 'bg-green-500',
-  Salud: 'bg-yellow-500',
-  Entretenimiento: 'bg-purple-500',
+  Calzado: 'bg-red-500',
+  Comidas: 'bg-blue-500',
+  'Electrónicos y telefonia': 'bg-[#fcc52a]',
+  Entretenimiento: 'bg-[#8ea8db]',
+  'Ropa y accesorios': 'bg-[#fe679a]',
+  'Servicios, bancos y cajeros': 'bg-[#0eaf90]',
+  'Tiendas departamentales': 'bg-[#4a08a0]',
+  'Tiendas especializadas': 'bg-[#8397b0]',
+  'Ópticas, salud y belleza': 'bg-[#6aff00]]',
   Otros: 'bg-gray-500',
 };
 
