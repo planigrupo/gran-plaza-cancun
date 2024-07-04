@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import Fuse from 'fuse.js';
 import DirectorioItem from '@components/common/DirectorioItem';
 import type { Store } from 'src/data/stores';
+import ToggleButton from '@components/common/ToggleButton';
 
 const CATEGORY_COLORS = {
   Calzado: 'bg-red-500',
@@ -12,7 +13,7 @@ const CATEGORY_COLORS = {
   'Servicios, bancos y cajeros': 'bg-[#0eaf90]',
   'Tiendas departamentales': 'bg-[#4a08a0]',
   'Tiendas especializadas': 'bg-[#8397b0]',
-  'Ópticas, salud y belleza': 'bg-[#6aff00]]',
+  'Ópticas, salud y belleza': 'bg-[#6aff00]',
   Otros: 'bg-gray-500',
 };
 
@@ -24,6 +25,7 @@ interface Props {
 const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [searchQuery, setSearchQuery] = useState('');
+  const [viewMode, setViewMode] = useState('tiendas');
 
   const handleCategoryChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -31,12 +33,13 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
     setSelectedCategory(event.target.value);
   };
 
-  /**
-   * Handles the change event of the search input field.
-   * Updates the search query state with the lowercase value of the input.
-   *
-   * @param event - The change event object.
+  /*
+    Handles the change event of the search input field.
+    Updates the search query state with the lowercase value of the input.
+   
+    @param event - The change event object.
    */
+
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value.toLowerCase());
   };
@@ -50,26 +53,28 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
 
   const fuse = useMemo(() => new Fuse(stores, fuseOptions), [stores]);
 
-  /**
-   * Returns the filtered stores based on the search query and selected category.
-   * If no search query is provided and the selected category is 'Todos', it returns all stores.
-   * Otherwise, it performs a search using Fuse.js library and filters the results based on the selected category.
-   *
-   * @param {string} searchQuery - The search query entered by the user.
-   * @param {string} selectedCategory - The selected category to filter the stores.
-   * @param {Array<Store>} stores - The array of all stores.
-   * @param {Fuse} fuse - The Fuse.js instance used for searching.
-   * @returns {Array<Store>} - The filtered stores based on the search query and selected category.
+  /*
+   Returns the filtered stores based on the search query and selected category.
+   If no search query is provided and the selected category is 'Todos', it returns all stores.
+   Otherwise, it performs a search using Fuse.js library and filters the results based on the selected category.
+   
+   @param {string} searchQuery - The search query entered by the user.
+   @param {string} selectedCategory - The selected category to filter the stores.
+   @param {Array<Store>} stores - The array of all stores.
+   @param {Fuse} fuse - The Fuse.js instance used for searching.
+   @returns {Array<Store>} - The filtered stores based on the search query and selected category.
    */
+
   const filteredStores = useMemo(() => {
     if (!searchQuery && selectedCategory === 'Todos') {
       return stores;
     }
 
-    /**
-     * Searches for stores based on the search query or returns all stores if no query is provided.
-     * @returns An array of search results, where each result contains an item property representing a store.
+    /*
+     Searches for stores based on the search query or returns all stores if no query is provided.
+     @returns An array of search results, where each result contains an item property representing a store.
      */
+
     const searchResults = searchQuery
       ? fuse.search(searchQuery)
       : stores.map((store) => ({ item: store }));
@@ -82,21 +87,51 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
       );
   }, [searchQuery, selectedCategory, stores, fuse]);
 
+  const handleOnFunction = () => {
+    setViewMode('tiendas');
+    console.log('On');
+  };
+
+  const handleOffFunction = () => {
+    setViewMode('mapa');
+    console.log('Off');
+  };
+
   return (
     <section className={className}>
-      <div className='container'>
-        <div className='mb-4'>
-          <input
-            type='text'
-            value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder='Buscar por nombre...'
-            className='p-2 border rounded mb-4'
-          />
+      <div className='container mx-auto p-4'>
+        <div className='flex flex-col sm:flex-row justify-between items-center mb-4 gap-4'>
+          {/* SEARCH */}
+          <div className='relative w-full sm:w-auto'>
+            <input
+              type='text'
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder='Buscar tiendas'
+              className='p-2 border-b-2 border-gray-400 focus:outline-none w-full'
+            />
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 19.9 19.7'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              role='img'
+              className='absolute left-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400'
+            >
+              <path strokeLinecap='square' d='M18.5 18.3l-5.4-5.4' />
+              <circle cx='8' cy='8' r='7' />
+            </svg>
+          </div>
+          {/* SELECT */}
           <select
             value={selectedCategory}
             onChange={handleCategoryChange}
-            className='p-2 border rounded'
+            className='p-2 border w-full sm:w-auto'
           >
             <option value='Todos'>Todos</option>
             {Object.keys(CATEGORY_COLORS).map((category) => (
@@ -105,10 +140,23 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
               </option>
             ))}
           </select>
+          {/* TOGGLE */}
+          <div className='relative w-full sm:w-auto'>
+            <ToggleButton
+              labelOn='Activado'
+              labelOff='Desactivado'
+              propOn='primary'
+              propOff='secondary'
+              onToggleOn={handleOnFunction}
+              onToggleOff={handleOffFunction}
+            />
+          </div>
         </div>
-
+        {viewMode === 'tiendas' && <p>Tiendas</p>}
+        {viewMode === 'mapa' && <p>Mapa</p>}
         <div
-          className='grid grid-cols-2 gap-px
+          className='grid grid-cols-1 gap-px
+                     sm:grid-cols-2
                      md:grid-cols-3
                      lg:grid-cols-4
                      xl:grid-cols-5'
@@ -117,7 +165,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
             <DirectorioItem
               color={CATEGORY_COLORS[store.categoria] || 'bg-gray-500'}
               {...store}
-              key={store.imagePath}
+              key={store.imagePath || store.title}
             />
           ))}
         </div>
