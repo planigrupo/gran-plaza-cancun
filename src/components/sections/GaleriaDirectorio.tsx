@@ -109,7 +109,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
               value={searchQuery}
               onChange={handleSearchChange}
               placeholder='Buscar tiendas'
-              className='p-2 border-b-2 border-gray-400 focus:outline-none w-full'
+              className='pl-10 p-2 border-b-2 border-gray-400 focus:outline-none w-full'
             />
             <svg
               xmlns='http://www.w3.org/2000/svg'
