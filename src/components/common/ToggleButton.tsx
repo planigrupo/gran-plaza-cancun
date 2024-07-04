@@ -21,7 +21,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   onToggleOn,
   onToggleOff,
 }) => {
-  const [isToggled, setIsToggled] = useState(false);
+  const [isToggled, setIsToggled] = useState(true);
 
   const handleToggle = () => {
     setIsToggled((prevState) => !prevState);

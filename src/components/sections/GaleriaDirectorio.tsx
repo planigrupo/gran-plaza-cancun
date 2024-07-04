@@ -3,6 +3,7 @@ import Fuse from 'fuse.js';
 import DirectorioItem from '@components/common/DirectorioItem';
 import type { Store } from 'src/data/stores';
 import ToggleButton from '@components/common/ToggleButton';
+import Mapa from '@images/mapimg1.webp';
 
 const CATEGORY_COLORS = {
   Calzado: 'bg-red-500',
@@ -102,7 +103,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
       <div className='container mx-auto p-4'>
         <div className='flex flex-col sm:flex-row justify-between items-center mb-4 gap-4'>
           {/* SEARCH */}
-          <div className='relative w-full sm:w-auto'>
+          <div className='relative flex-none w-full md:w-1/3 '>
             <input
               type='text'
               value={searchQuery}
@@ -131,7 +132,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
           <select
             value={selectedCategory}
             onChange={handleCategoryChange}
-            className='p-2 border w-full sm:w-auto'
+            className='p-2 border flex-none w-full md:w-1/3 '
           >
             <option value='Todos'>Todos</option>
             {Object.keys(CATEGORY_COLORS).map((category) => (
@@ -141,10 +142,10 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
             ))}
           </select>
           {/* TOGGLE */}
-          <div className='relative w-full sm:w-auto'>
+          <div className='relative flex-none w-full md:w-1/5 '>
             <ToggleButton
-              labelOn='Activado'
-              labelOff='Desactivado'
+              labelOn='Mapa'
+              labelOff='Tiendas'
               propOn='primary'
               propOff='secondary'
               onToggleOn={handleOnFunction}
@@ -152,23 +153,34 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
             />
           </div>
         </div>
-        {viewMode === 'tiendas' && <p>Tiendas</p>}
-        {viewMode === 'mapa' && <p>Mapa</p>}
-        <div
-          className='grid grid-cols-1 gap-px
+        {viewMode === 'tiendas' && (
+          <div
+            className='grid grid-cols-1 gap-px
                      sm:grid-cols-2
                      md:grid-cols-3
                      lg:grid-cols-4
                      xl:grid-cols-5'
-        >
-          {filteredStores.map((store) => (
-            <DirectorioItem
-              color={CATEGORY_COLORS[store.categoria] || 'bg-gray-500'}
-              {...store}
-              key={store.imagePath || store.title}
+          >
+            {filteredStores.map((store) => (
+              <DirectorioItem
+                color={CATEGORY_COLORS[store.categoria] || 'bg-gray-500'}
+                {...store}
+                key={store.imagePath || store.title}
+              />
+            ))}
+          </div>
+        )}
+        {viewMode === 'mapa' && (
+          <div className='flex items-center relative justify-center p-8'>
+            <img
+              className='w-[100%] max-w-7xl'
+              src={Mapa.src}
+              alt='Floating Element'
+              decoding='async'
+              loading='lazy'
             />
-          ))}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );
