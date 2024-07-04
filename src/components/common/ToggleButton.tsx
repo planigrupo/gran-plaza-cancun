@@ -39,7 +39,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   return (
     <button
       onClick={handleToggle}
-      className={`cursor-pointer uppercase transition-colors border-2 py-2 px-8 rounded-md text-white font-semibold no-underline focus:outline-none inline-block ${className} ${
+      className={`cursor-pointer uppercase transition-colors border-2 py-2 px-8 text-white font-semibold no-underline focus:outline-none inline-block ${className} ${
         isToggled
           ? 'bg-primary border-primary hover:bg-transparent hover:text-primary'
           : 'bg-secondary border-secondary hover:bg-transparent hover:text-secondary'
