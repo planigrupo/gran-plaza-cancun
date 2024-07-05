@@ -1,32 +1,30 @@
 ---
 import Button from '@components/common/Button.astro';
-import Carousel from '@components/common/Carousel.astro';
-import CarouselSlide from '@components/common/CarouselSlide.astro';
+import { Image } from 'astro:assets';
 import TitleDivider from '@components/common/TitleDivider.astro';
-import fase1 from '@images/face-1.jpg';
+import ImagesGrid from '@components/common/ImagesGrid.astro';
+import { Images } from '../../data/homeGallery.ts';
 
 interface Props {
   class?: string;
 }
 const { class: className } = Astro.props;
-console.log(fase1.src);
 ---
 
 <section class:list={[className]}>
-  <div class='container'>
-    <TitleDivider class='text-secondary mb-8'>Nosotros</TitleDivider>
-    <Carousel class='mb-8'>
-      <CarouselSlide imageUrl={'face-1.jpg'} />
-      <CarouselSlide imageUrl={'face-2.jpg'} />
-      <CarouselSlide imageUrl={'face-3.jpg'} />
-      <CarouselSlide imageUrl={'face-4.jpg'} />
-    </Carousel>
-    <div class='flex justify-center'>
+  <ImagesGrid>
+    {
+      Object.keys(Images).map((image: any) => (
+        <Image src={image} alt='' width={800} height={800} class='w-full' />
+      ))
+    }
+
+    <div class='absolute inset-0 flex items-center justify-center'>
       <Button
         variant='secondary'
         href='https://www.facebook.com/cancungranplaza/photos_albums'
-        >Ver Mas</Button
+        target='_blank'>Más Fotos</Button
       >
     </div>
-  </div>
+  </ImagesGrid>
 </section>

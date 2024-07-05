@@ -22,6 +22,7 @@ const optimizedBackgroundImage = await getImage({ src: background });
 >
   <div class='container'>
     <TitleDivider class='text-white mb-8'>Nuestras tiendas</TitleDivider>
+
     <Carousel class='bg-white rounded-3xl shadow-2xl mb-8'>
       {
         stores.map((store) => (
@@ -29,8 +30,9 @@ const optimizedBackgroundImage = await getImage({ src: background });
         ))
       }
     </Carousel>
+
     <div class='flex justify-center'>
-      <Button variant='secondary' href='/directorio'>Ver Mas</Button>
+      <Button variant='secondary' href='/directorio'>Directorio</Button>
     </div>
   </div>
 </section>
