@@ -1,19 +1,30 @@
 ---
-import { Image } from 'astro:assets';
-
 interface Props {
   imageUrl: string;
   title?: string;
+  type?: string;
 }
 
-const { imageUrl, title } = Astro.props;
+const { imageUrl, title, type } = Astro.props;
+const imageSrc =
+  type === 'stores'
+    ? imageUrl
+      ? `/src/images/stores/${imageUrl}`
+      : `/src/images/stores/404.png`
+    : type === 'events'
+      ? imageUrl
+        ? `/src/images/events/${imageUrl}`
+        : `/src/images/events/404.png`
+      : imageUrl
+        ? `/src/images/${imageUrl}`
+        : `/src/images/404.png`;
 ---
 
 <div class='slide pl-4'>
-  <Image
+  <img
     width={200}
     height={200}
-    src={imageUrl}
+    src={imageSrc}
     alt={title || ''}
     class='w-full rounded-md'
   />

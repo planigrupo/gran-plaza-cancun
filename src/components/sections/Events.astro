@@ -4,32 +4,27 @@ import Carousel from '@components/common/Carousel.astro';
 import CarouselSlide from '@components/common/CarouselSlide.astro';
 import LeftElement from '@components/common/LeftElement.astro';
 import TitleDivider from '@components/common/TitleDivider.astro';
+import type { Event } from 'src/data/events';
 
 interface Props {
   class?: string;
+  events: Event[];
 }
-const { class: className } = Astro.props;
+const { class: className, events } = Astro.props;
 ---
 
 <section class:list={[className]}>
   <div class='container'>
     <TitleDivider class='text-secondary mb-8'>Eventos</TitleDivider>
     <Carousel class='mb-8'>
-      <CarouselSlide
-        imageUrl='https://www.paseosantacatarina.com/_next/image?url=%2Fmultimedia%2FE6.webp&w=2048&q=75'
-      />
-      <CarouselSlide
-        imageUrl='https://www.paseosantacatarina.com/_next/image?url=%2Fmultimedia%2FE_NAVIDAD_DE_ROLY_POST_FB.jpg&w=2048&q=75'
-      />
-      <CarouselSlide
-        imageUrl='https://www.paseosantacatarina.com/_next/image?url=%2Fmultimedia%2FE_ENCENDIDO_DE_PINO_DESFILE_NAVIDEN%CC%83O_POST_FB.jpg&w=2048&q=75'
-      />
-      <CarouselSlide
-        imageUrl='https://www.paseosantacatarina.com/_next/image?url=%2Fmultimedia%2FE_RITMOS_SANTA_POST_FB.jpg&w=2048&q=75'
-      />
+      {
+        events.map((event) => (
+          <CarouselSlide imageUrl={event.imagePath} type='events' />
+        ))
+      }
     </Carousel>
     <div class='flex justify-center'>
-      <Button variant='secondary' href='#'>Ver Mas</Button>
+      <Button variant='secondary' href='/eventos'>Ver Mas</Button>
     </div>
   </div>
   <LeftElement />

@@ -1,19 +1,38 @@
 ---
+import Button from '@components/common/Button.astro';
+import Carousel from '@components/common/Carousel.astro';
+import CarouselSlide from '@components/common/CarouselSlide.astro';
 import TitleDivider from '@components/common/TitleDivider.astro';
-import { getImage } from 'astro:assets';
 import background from '@images/bg-shops.png';
+import type { Store } from 'src/data/stores';
+import { getImage } from 'astro:assets';
+
+interface Props {
+  class?: string;
+  stores: Store[];
+}
+const { class: className, stores } = Astro.props;
 
 const optimizedBackgroundImage = await getImage({ src: background });
 ---
 
 <section
-  class=`min-h-screen bg-cover bg-center bg-no-repeat`
+  class:list={[className]}
   style=`background-image: url("${optimizedBackgroundImage.src}")`
 >
   <div class='container'>
-    <TitleDivider class='text-white mb-8 py-12 md:py-16 lg:py-28'
-      >Nuestras tiendas</TitleDivider
-    >
+    <TitleDivider class='text-white mb-8'>Nuestras tiendas</TitleDivider>
+    <Carousel>
+      {
+        stores.map((store) => (
+          <CarouselSlide imageUrl={store.imagePath} type='stores' />
+        ))
+      }
+    </Carousel>
+    <div class='flex justify-center'>
+      <Button variant='secondary' href='/directorio'>Ver Mas</Button>
+    </div>
   </div>
 </section>
+
 <style></style>

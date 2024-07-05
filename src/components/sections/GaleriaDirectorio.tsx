@@ -3,7 +3,7 @@ import Fuse from 'fuse.js';
 import DirectorioItem from '@components/common/DirectorioItem';
 import type { Store } from 'src/data/stores';
 import ToggleButton from '@components/common/ToggleButton';
-import Mapa from '@images/mapimg1.webp';
+import Mapa from '@images/mapa.jpg';
 
 const CATEGORY_COLORS = {
   Calzado: 'bg-red-500',
@@ -173,7 +173,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
         {viewMode === 'mapa' && (
           <div className='flex items-center relative justify-center p-8'>
             <img
-              className='w-[100%] max-w-7xl'
+              className='w-[75%] max-w-7xl'
               src={Mapa.src}
               alt='Floating Element'
               decoding='async'

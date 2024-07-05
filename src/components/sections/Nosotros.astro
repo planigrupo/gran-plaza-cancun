@@ -1,0 +1,23 @@
+---
+import Button from '@components/common/Button.astro';
+import Carousel from '@components/common/Carousel.astro';
+import CarouselSlide from '@components/common/CarouselSlide.astro';
+import TitleDivider from '@components/common/TitleDivider.astro';
+import fase1 from '@images/face-1.jpg';
+
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<section class:list={[className]}>
+  <div class='container'>
+    <TitleDivider class='text-secondary mb-8'>Nosotros</TitleDivider>
+    <CarouselSlide imageUrl={fase1.src} />
+    <Carousel class='mb-8' />
+    <div class='flex justify-center'>
+      <Button variant='secondary' href='www.facebook.com'>Ver Mas</Button>
+    </div>
+  </div>
+</section>
