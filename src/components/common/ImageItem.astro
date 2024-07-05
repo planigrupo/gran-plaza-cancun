@@ -1,0 +1,27 @@
+---
+interface Props {
+  imagePath: string;
+  title: string;
+  type: string;
+}
+
+const { imagePath, title, type } = Astro.props;
+const imageSrc =
+  type === 'stores'
+    ? imagePath
+      ? `/src/images/stores/${imagePath}`
+      : `/src/images/stores/404.png`
+    : type === 'events'
+      ? imagePath
+        ? `/src/images/events/${imagePath}`
+        : `/src/images/events/404.png`
+      : imagePath
+        ? `/src/images/${imagePath}`
+        : `/src/images/404.png`;
+---
+
+<div
+  class='group aspect-square flex flex-col items-center relative justify-center p-8'
+>
+  <img class='' src={imageSrc} alt={`${title}-logo`} width={500} height={500} />
+</div>
