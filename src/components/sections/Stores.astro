@@ -13,6 +13,8 @@ interface Props {
 }
 const { class: className, stores } = Astro.props;
 
+console.log(stores);
+
 const optimizedBackgroundImage = await getImage({ src: background });
 ---
 

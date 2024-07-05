@@ -16,11 +16,14 @@ const { class: className } = Astro.props;
   import Autoplay from 'embla-carousel-autoplay';
 
   const plugins = [Autoplay({ delay: 2000, stopOnInteraction: false })];
-  const emblaNode = document.querySelector('.carousel') as HTMLElement;
+  const emblaNodes = document.querySelectorAll('.carousel');
   const options: EmblaOptionsType = {
     align: 'start',
     loop: true,
     slidesToScroll: 'auto',
   };
-  EmblaCarousel(emblaNode, options, plugins);
+
+  emblaNodes.forEach((carousel) => {
+    EmblaCarousel(carousel as HTMLElement, options, plugins);
+  });
 </script>
