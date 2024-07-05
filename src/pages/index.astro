@@ -12,16 +12,19 @@ import Nosotros from '@components/sections/Nosotros.astro';
 <Layout title='Home | Gran Plaza Cancun'>
   <main>
     <Hero />
+
     <Events
       class='relative pt-16 pb-12 md:pt-32 md:pb-16 lg:pt-40 lg:pb-28'
       events={events}
       buttonLink='/eventos'
       buttonText='Ver Eventos'
     />
+
     <Stores
       stores={stores}
       class='pt-16 pb-12 md:pt-32 md:pb-16 lg:pt-40 lg:pb-28'
     />
+
     <Nosotros images={Images} />
   </main>
 </Layout>
