@@ -9,13 +9,15 @@ interface Props {
   class?: string;
 }
 const { class: className } = Astro.props;
+console.log(fase1.src);
 ---
 
 <section class:list={[className]}>
   <div class='container'>
     <TitleDivider class='text-secondary mb-8'>Nosotros</TitleDivider>
-    <CarouselSlide imageUrl={fase1.src} />
-    <Carousel class='mb-8' />
+    <Carousel class='mb-8'>
+      <CarouselSlide imageUrl={'face-1.jpg'} />
+    </Carousel>
     <div class='flex justify-center'>
       <Button variant='secondary' href='www.facebook.com'>Ver Mas</Button>
     </div>
