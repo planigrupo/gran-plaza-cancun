@@ -10,8 +10,9 @@ import { getImage } from 'astro:assets';
 interface Props {
   class?: string;
   stores: Store[];
+  title?: string;
 }
-const { class: className, stores } = Astro.props;
+const { class: className, stores, title = 'Nuestras Tiendas' } = Astro.props;
 
 const optimizedBackgroundImage = await getImage({ src: background });
 ---
@@ -21,7 +22,7 @@ const optimizedBackgroundImage = await getImage({ src: background });
   style=`background-image: url("${optimizedBackgroundImage.src}")`
 >
   <div class='container'>
-    <TitleDivider class='text-white mb-8'>Nuestras tiendas</TitleDivider>
+    <TitleDivider class='text-white mb-8'>{title}</TitleDivider>
 
     <Carousel class='bg-white rounded-3xl shadow-2xl mb-8'>
       {
