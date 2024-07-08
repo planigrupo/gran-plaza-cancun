@@ -20,8 +20,10 @@ const imageSrc =
         : `/src/images/404.png`;
 ---
 
-<div
-  class='group aspect-square flex flex-col items-center relative justify-center p-8'
->
-  <img class='' src={imageSrc} alt={`${title}-logo`} width={500} height={500} />
-</div>
+<img
+  class='w-full'
+  src={imageSrc}
+  alt={`${title}-${type}`}
+  width={700}
+  height={700}
+/>
