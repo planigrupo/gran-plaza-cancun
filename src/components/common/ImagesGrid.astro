@@ -1,15 +1,28 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
   class?: string;
   enableThreeColumns?: boolean;
+  images: any;
 }
 
-const { class: className, enableThreeColumns } = Astro.props;
+const { class: className, enableThreeColumns, images } = Astro.props;
 const gridCols = enableThreeColumns
   ? 'grid-cols-2 md:grid-cols-3'
   : 'grid-cols-2 md:grid-cols-2';
 ---
 
-<div class={`relative grid ${gridCols} ${className}`}>
-  <slot />
+<div class={`gap-4 grid ${gridCols} ${className}`}>
+  {
+    Object.keys(images).map((image: any) => (
+      <Image
+        src={image}
+        alt=''
+        width={800}
+        height={800}
+        class='w-full rounded-md aspect-square object-cover object-center shadow-xl '
+      />
+    ))
+  }
 </div>

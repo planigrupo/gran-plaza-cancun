@@ -12,19 +12,15 @@ const { class: className, images } = Astro.props;
 ---
 
 <section class:list={[className]}>
-  <ImagesGrid>
-    {
-      Object.keys(images).map((image: any) => (
-        <Image src={image} alt='' width={800} height={800} class='w-full' />
-      ))
-    }
+  <div class='container'>
+    <TitleDivider class='text-primary mb-8'> Nosotros </TitleDivider>
 
-    <div class='absolute inset-0 flex items-center justify-center'>
-      <Button
-        variant='secondary'
-        href='https://www.facebook.com/cancungranplaza/photos_albums'
-        target='_blank'>Más Fotos</Button
-      >
-    </div>
-  </ImagesGrid>
+    <ImagesGrid images={images} enableThreeColumns />
+
+    <Button
+      variant='primary'
+      href='https://www.facebook.com/cancungranplaza/photos_albums'
+      target='_blank'>Más Fotos</Button
+    >
+  </div>
 </section>
