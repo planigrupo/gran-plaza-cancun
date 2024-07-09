@@ -11,8 +11,16 @@ interface Props {
   class?: string;
   stores: Store[];
   title?: string;
+  buttonText?: string;
+  buttonLink?: string;
 }
-const { class: className, stores, title = 'Nuestras Tiendas' } = Astro.props;
+const {
+  class: className,
+  stores,
+  title = 'Nuestras Tiendas',
+  buttonLink,
+  buttonText,
+} = Astro.props;
 
 const optimizedBackgroundImage = await getImage({ src: background });
 ---
@@ -24,18 +32,24 @@ const optimizedBackgroundImage = await getImage({ src: background });
   <div class='container'>
     <TitleDivider class='text-white mb-8'>{title}</TitleDivider>
 
-    <Carousel class='bg-white rounded-3xl shadow-2xl mb-8'>
-      {
-        stores.map((store) => (
-          <CarouselSlide imageUrl={store.imagePath} type='stores' />
-        ))
-      }
-    </Carousel>
+    {
+      stores.length > 0 && (
+        <Carousel
+          items={stores}
+          type='stores'
+          class='bg-white rounded-3xl shadow-2xl mb-8'
+        />
+      )
+    }
 
-    <div class='flex justify-center'>
-      <Button variant='secondary' href='/directorio'>Directorio</Button>
-    </div>
+    {
+      buttonLink && buttonText && (
+        <div class='flex justify-center'>
+          <Button variant='secondary' href={buttonLink}>
+            {buttonText}
+          </Button>
+        </div>
+      )
+    }
   </div>
 </section>
-
-<style></style>

@@ -19,13 +19,10 @@ const { events, title = 'Eventos', buttonLink, buttonText } = Astro.props;
 <section class='relative pt-16 pb-12 md:pt-32 md:pb-16 lg:pt-40 lg:pb-28'>
   <div class='container'>
     <TitleDivider class='text-secondary mb-8'>{title}</TitleDivider>
+
     {
       events.length > 0 && (
-        <Carousel class='mb-8'>
-          {events.map((event) => (
-            <CarouselSlide imageUrl={event.imagePath} type='events' />
-          ))}
-        </Carousel>
+        <Carousel items={events} class='mb-8' type='events' />
       )
     }
 
