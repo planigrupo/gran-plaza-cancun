@@ -12,7 +12,7 @@ const { class: className, items, type } = Astro.props;
 ---
 
 <div class:list={[className]} class='carousel overflow-hidden'>
-  <div class='flex -ml-4'>
+  <div class='flex -ml-4 items-center'>
     {
       items.map(({ imagePath, alt }) => (
         <CarouselSlide imageUrl={imagePath} type={type} alt={alt} />

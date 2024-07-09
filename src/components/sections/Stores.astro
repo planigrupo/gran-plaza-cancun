@@ -34,11 +34,9 @@ const optimizedBackgroundImage = await getImage({ src: background });
 
     {
       stores.length > 0 && (
-        <Carousel
-          items={stores}
-          type='stores'
-          class='bg-white rounded-3xl shadow-2xl mb-8'
-        />
+        <div class='bg-white rounded-xl mb-8 px-8 py-4'>
+          <Carousel items={stores} type='stores' />
+        </div>
       )
     }
 

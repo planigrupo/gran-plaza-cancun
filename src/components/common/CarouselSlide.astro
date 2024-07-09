@@ -1,12 +1,11 @@
 ---
 interface Props {
   imageUrl: string;
-  title?: string;
   type: 'events' | 'stores';
   alt?: string;
 }
 
-const { imageUrl, title, type, alt } = Astro.props;
+const { imageUrl, type, alt } = Astro.props;
 
 /**
  * Returns the source URL for the image to be displayed in the carousel slide.
@@ -18,35 +17,21 @@ const { imageUrl, title, type, alt } = Astro.props;
  * @returns {string} - The source URL for the image.
  */
 const getImageSrc = (type: 'events' | 'stores', imageUrl: string) => {
-  let basePath = '/src/images/';
+  let basePath = '/src/images';
   const DEFAULT_FOLDER = 'stores';
 
-  if (!imageUrl) return `${basePath}404.png`;
+  if (!imageUrl) return `${basePath}/404.png`;
 
-  let folder = type ? `${type}/` : DEFAULT_FOLDER;
+  let folder = type ? `${type}` : DEFAULT_FOLDER;
 
-  return `${basePath}${folder}${imageUrl}`;
+  return `${basePath}/${folder}/${imageUrl}`;
 };
 
 const imageSrc = getImageSrc(type, imageUrl);
 ---
 
-<div class='slide pl-4'>
-  <img
-    width={200}
-    height={200}
-    src={imageSrc}
-    alt={alt || ''}
-    class='w-full rounded-xl'
-  />
-
-  {
-    title && (
-      <h3 class='text-secondary font-bold text-xl [&::before]:border-primary text-center'>
-        {title}
-      </h3>
-    )
-  }
+<div class=`slide pl-4 ${type}`>
+  <img width={200} height={200} src={imageSrc} alt={alt || ''} class='w-full' />
 </div>
 
 <style>
@@ -63,16 +48,21 @@ const imageSrc = getImageSrc(type, imageUrl);
     @media (width >= 1024px) {
       --slide-items: 3;
     }
-  }
 
-  .slide h3::before {
-    border-radius: 50%;
-    border-width: 3px;
-    border-style: solid;
-    content: '';
-    display: inline-block;
-    height: 14px;
-    margin-right: 5px;
-    width: 14px;
+    &.stores {
+      img {
+        max-width: 250px;
+        max-height: 100px;
+        object-fit: contain;
+      }
+
+      @media (width >=768px) {
+        --slide-items: 4;
+      }
+
+      @media (width >= 1024px) {
+        --slide-items: 5;
+      }
+    }
   }
 </style>
