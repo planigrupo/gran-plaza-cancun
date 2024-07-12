@@ -5,8 +5,5 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react()],
-  adapter: vercel({
-    imageService: true,
-  }),
+  integrations: [tailwind(), react()]
 });
