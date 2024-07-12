@@ -12,14 +12,15 @@ const { class: className, images } = Astro.props;
 
 <section class:list={[className]}>
   <div class='container'>
-    <TitleDivider class='text-primary mb-8'> Nosotros </TitleDivider>
+    <TitleDivider class='text-secondary mb-8'> Nosotros </TitleDivider>
 
-    <ImagesGrid images={images} enableThreeColumns />
-
-    <Button
-      variant='primary'
-      href='https://www.facebook.com/cancungranplaza/photos_albums'
-      target='_blank'>Más Fotos</Button
-    >
+    <ImagesGrid class='mb-8' images={images} enableThreeColumns />
+    <div class='flex justify-center'>
+      <Button
+        variant='secondary'
+        href='https://www.facebook.com/cancungranplaza/photos_albums'
+        target='_blank'>Más Fotos</Button
+      >
+    </div>
   </div>
 </section>

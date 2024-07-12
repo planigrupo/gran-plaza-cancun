@@ -101,46 +101,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
   return (
     <section className={className}>
       <div className='container mx-auto p-4'>
-        <div className='flex flex-col sm:flex-row justify-between items-center mb-4 gap-4'>
-          {/* SEARCH */}
-          <div className='relative flex-none w-full md:w-1/3 '>
-            <input
-              type='text'
-              value={searchQuery}
-              onChange={handleSearchChange}
-              placeholder='Buscar tiendas'
-              className='pl-10 p-2 border-b-2 border-gray-400 focus:outline-none w-full'
-            />
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
-              viewBox='0 0 19.9 19.7'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              role='img'
-              className='absolute left-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400'
-            >
-              <path strokeLinecap='square' d='M18.5 18.3l-5.4-5.4' />
-              <circle cx='8' cy='8' r='7' />
-            </svg>
-          </div>
-          {/* SELECT */}
-          <select
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            className='p-2 border flex-none w-full md:w-1/3 '
-          >
-            <option value='Todos'>Todos</option>
-            {Object.keys(CATEGORY_COLORS).map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
+        <div className='flex flex-col sm:flex-row justify-between items-center mb-12 gap-4'>
           {/* TOGGLE */}
           <div className='relative flex-none w-full md:w-1/5 '>
             <ToggleButton
@@ -152,6 +113,49 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
               onToggleOff={handleOffFunction}
             />
           </div>
+          {/* SEARCH */}
+          {viewMode === 'tiendas' && (
+            <div className='relative flex-none w-full md:w-1/3 '>
+              <input
+                type='text'
+                value={searchQuery}
+                onChange={handleSearchChange}
+                placeholder='Buscar tiendas'
+                className='pl-10 p-2 border-b-2 border-gray-400 focus:outline-none w-full'
+              />
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='24'
+                height='24'
+                viewBox='0 0 19.9 19.7'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                role='img'
+                className='absolute left-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400'
+              >
+                <path strokeLinecap='square' d='M18.5 18.3l-5.4-5.4' />
+                <circle cx='8' cy='8' r='7' />
+              </svg>
+            </div>
+          )}
+          {/* SELECT */}
+          {viewMode === 'tiendas' && (
+            <select
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+              className='p-2 border flex-none w-full md:w-1/3 text-gray-400'
+            >
+              <option value='Todos'>Todos</option>
+              {Object.keys(CATEGORY_COLORS).map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
         {viewMode === 'tiendas' && (
           <div
@@ -173,7 +177,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
         {viewMode === 'mapa' && (
           <div className='flex items-center relative justify-center p-8'>
             <img
-              className='w-[75%] max-w-7xl'
+              className='w-[100%] max-w-7xl'
               src={Mapa.src}
               alt='Floating Element'
               decoding='async'

@@ -1,11 +1,10 @@
 ---
 import type { Store } from 'src/data/stores';
 import CarouselSlide from './CarouselSlide.astro';
-import type { Event } from 'src/data/events';
 
 interface Props {
   class?: string;
-  items: Store[] | Event[];
+  items: Store[];
   type: 'events' | 'stores';
 }
 const { class: className, items, type } = Astro.props;

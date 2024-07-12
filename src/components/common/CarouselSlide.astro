@@ -20,7 +20,7 @@ const getImageSrc = (type: 'events' | 'stores', imageUrl: string) => {
   let basePath = '/src/images';
   const DEFAULT_FOLDER = 'stores';
 
-  if (!imageUrl) return `${basePath}/404.png`;
+  if (!imageUrl) return `${basePath}/stores/404.png`;
 
   let folder = type ? `${type}` : DEFAULT_FOLDER;
 

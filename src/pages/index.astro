@@ -4,7 +4,6 @@ import Hero from '@components/sections/Hero.astro';
 import Events from '@components/sections/Events.astro';
 import Stores from '@components/sections/Stores.astro';
 import { stores } from 'src/data/stores.js';
-import { events } from 'src/data/events.js';
 import { Images } from '../data/homeGallery.ts';
 import Nosotros from '@components/sections/Nosotros.astro';
 ---
@@ -15,7 +14,6 @@ import Nosotros from '@components/sections/Nosotros.astro';
 
     <Events
       class='relative pt-16 pb-12 md:pt-32 md:pb-16 lg:pt-40 lg:pb-28'
-      events={events}
       title='Eventos'
       buttonLink='/eventos'
       buttonText='Ver Eventos'

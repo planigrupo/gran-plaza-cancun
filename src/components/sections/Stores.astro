@@ -1,7 +1,6 @@
 ---
 import Button from '@components/common/Button.astro';
 import Carousel from '@components/common/Carousel.astro';
-import CarouselSlide from '@components/common/CarouselSlide.astro';
 import TitleDivider from '@components/common/TitleDivider.astro';
 import background from '@images/bg-shops.png';
 import type { Store } from 'src/data/stores';
@@ -30,12 +29,12 @@ const optimizedBackgroundImage = await getImage({ src: background });
   style=`background-image: url("${optimizedBackgroundImage.src}")`
 >
   <div class='container'>
-    <TitleDivider class='text-white mb-8'>{title}</TitleDivider>
+    <TitleDivider class='text-white mb-4 mt-8'>{title}</TitleDivider>
 
     {
       stores.length > 0 && (
         <div class='bg-white rounded-xl mb-8 px-8 py-4'>
-          <Carousel items={stores} type='stores' />
+          <Carousel class='mb-8 mt-8' items={stores} type='stores' />
         </div>
       )
     }
