@@ -4,7 +4,6 @@ import Hero from '@components/sections/Hero.astro';
 import Events from '@components/sections/Events.astro';
 import Stores from '@components/sections/Stores.astro';
 import { stores } from 'src/data/stores.js';
-import { Images } from '../data/homeGallery.ts';
 import Nosotros from '@components/sections/Nosotros.astro';
 ---
 
@@ -23,10 +22,10 @@ import Nosotros from '@components/sections/Nosotros.astro';
       title='Nuestras Tiendas'
       stores={stores}
       class='pt-16 pb-12 md:pt-32 md:pb-16 lg:pt-24 lg:pb-24'
-      buttonLink='/tiendas'
+      buttonLink='/directorio'
       buttonText='Ver Tiendas'
     />
 
-    <Nosotros class='py-12 md:py-16 lg:py-28' images={Images} />
+    <Nosotros class='py-12 md:py-16 lg:py-28' />
   </main>
 </Layout>

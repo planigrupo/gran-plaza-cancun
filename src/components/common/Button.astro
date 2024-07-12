@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant: 'primary' | 'secondary' | 'danger';
+  variant: 'primary' | 'secondary' | 'white';
   href: string;
   target?: '_blank' | '_self';
   class?: string;
@@ -15,10 +15,12 @@ const {
 let buttonClass = className;
 
 const variantClasses: Record<string, string> = {
-  primary: 'bg-primary border-primary hover:bg-transparent hover:text-primary',
+  primary:
+    'bg-primary border-primary text-white hover:bg-transparent hover:text-primary',
   secondary:
-    'bg-secondary border-secondary hover:bg-white hover:text-secondary', // TODO: Change this if necessary
-  danger: 'bg-red-500 hover:bg-red-600', // TODO: Change this if necessary
+    'bg-secondary border-secondary text-white hover:bg-transparent hover:text-secondary', // TODO: Change this if necessary
+  white:
+    'bg-white border-white text-primary hover:bg-transparent hover:text-white', // TODO: Change this if necessary
 };
 
 if (variantClasses[variant]) {
@@ -30,7 +32,7 @@ if (variantClasses[variant]) {
   href={href}
   target={target}
   class:list={buttonClass}
-  class='cursor-pointer uppercase transition-colors border-2 bg-primary py-2 px-6 rounded-xl text-white font-semibold no-underline focus:outline-none inline-block'
+  class='cursor-pointer uppercase transition-colors border-2 bg-primary py-2 px-6 rounded-xl font-semibold no-underline focus:outline-none inline-block'
 >
   <slot />
 </a>

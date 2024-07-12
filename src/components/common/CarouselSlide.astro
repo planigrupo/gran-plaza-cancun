@@ -29,16 +29,18 @@ const getImageSrc = (type: 'events' | 'stores', imageUrl: string) => {
 
 const imageSrc = getImageSrc(type, imageUrl);
 ---
-
-<div class=`slide pl-4 ${type}`>
-  <img
-    width={200}
-    height={200}
-    src={imageSrc}
-    alt={alt || ''}
-    class='w-full rounded-xl'
-  />
-</div>
+{
+  imageUrl && 
+  (<div class=`slide pl-4 ${type}`>
+    <img
+      width={200}
+      height={200}
+      src={imageSrc}
+      alt={alt || ''}
+      class='w-full rounded-xl'
+    />
+  </div>)
+}
 
 <style>
   .slide {

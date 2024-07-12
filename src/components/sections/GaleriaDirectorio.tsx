@@ -101,9 +101,9 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
   return (
     <section className={className}>
       <div className='container mx-auto p-4'>
-        <div className='flex flex-col sm:flex-row justify-between items-center mb-12 gap-4'>
+        <div className='flex flex-col justify-end sm:flex-row items-center mb-12 gap-4'>
           {/* TOGGLE */}
-          <div className='relative flex-none w-full md:w-1/5 '>
+          <div className='relative flex-none md:order-1'>
             <ToggleButton
               labelOn='Mapa'
               labelOff='Tiendas'
@@ -115,7 +115,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
           </div>
           {/* SEARCH */}
           {viewMode === 'tiendas' && (
-            <div className='relative flex-none w-full md:w-1/3 '>
+            <div className='relative flex-none  '>
               <input
                 type='text'
                 value={searchQuery}
@@ -146,7 +146,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
             <select
               value={selectedCategory}
               onChange={handleCategoryChange}
-              className='p-2 border flex-none w-full md:w-1/3 text-gray-400'
+              className='p-2 border flex-none text-gray-400'
             >
               <option value='Todos'>Todos</option>
               {Object.keys(CATEGORY_COLORS).map((category) => (

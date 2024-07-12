@@ -9,17 +9,17 @@ const { class: className, images } = Astro.props;
 ---
 
 <div class:list={[className]} class='carousel overflow-hidden'>
-  <div class='flex -ml-4 items-center'>
+  <div class='flex -ml-4'>
     {
-      Object.keys(images).map((image: any, index:number) => (
-      <div class=`slide pl-4` key={index}>
-        <Image
-          src={image}
-          alt=''
-          width={800}
-          height={800}
-          class='w-full rounded-md aspect-square object-cover object-center shadow-xl '
-        />
+      Object.keys(images).map((image: any) => (
+        <div class='slide pl-4'>
+          <Image
+            src={image}
+            alt=''
+            width={800}
+            height={800}
+            class='w-full rounded-md aspect-square object-cover object-center shadow-xl '
+          />
         </div>
       ))
     }

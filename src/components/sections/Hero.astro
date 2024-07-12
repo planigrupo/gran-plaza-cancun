@@ -22,6 +22,8 @@ import Text from '@images/hero-text.png';
 
 <style>
   .hero {
+    --people-position: center bottom;
+
     background-image: linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.1),
@@ -32,10 +34,7 @@ import Text from '@images/hero-text.png';
       cover,
       auto 70%,
       cover;
-    background-position:
-      center,
-      center bottom,
-      center;
+    background-position: center, var(--people-position), center;
     background-repeat: no-repeat;
     grid-template-columns: repeat(2, 1fr);
   }
@@ -51,20 +50,15 @@ import Text from '@images/hero-text.png';
 
   @media (width >= 768px) {
     .hero {
+      --people-position: calc(50% - 250px) bottom;
+
       background-size: cover, contain, cover;
-      background-position:
-        center,
-        calc(50% - 250px) bottom,
-        center;
     }
   }
 
   @media (width >= 1024px) {
     .hero {
-      background-position:
-        center,
-        calc(50% - 300px) bottom,
-        center;
+      --people-position: calc(50% - 300px) bottom;
     }
   }
 </style>
