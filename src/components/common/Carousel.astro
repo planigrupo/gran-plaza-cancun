@@ -10,7 +10,7 @@ interface Props {
 const { class: className, items, type } = Astro.props;
 ---
 
-<div class:list={[className]} class='carousel overflow-hidden'>
+<div class:list={[className]} class='carousel-stores overflow-hidden'>
   <div class='flex -ml-4 items-center'>
     {
       items.map(({ imagePath, alt }) => (
@@ -23,23 +23,25 @@ const { class: className, items, type } = Astro.props;
 <script>
   import EmblaCarousel, { type EmblaOptionsType } from 'embla-carousel';
   import Autoplay from 'embla-carousel-autoplay';
+  import AutoScroll from 'embla-carousel-auto-scroll';
 
   const AUTOPLAY_SPEED_IN_SECONDS = 4;
+
+  const OPTIONS: EmblaOptionsType = {
+    align: 'center',
+    loop: true,
+  };
 
   const plugins = [
     Autoplay({
       delay: AUTOPLAY_SPEED_IN_SECONDS * 1000,
       stopOnInteraction: false,
     }),
+    AutoScroll({ startDelay: 0, speed: 1 }),
   ];
-  const emblaNodes = document.querySelectorAll('.carousel');
-  const options: EmblaOptionsType = {
-    align: 'start',
-    loop: true,
-    slidesToScroll: 'auto',
-  };
 
+  const emblaNodes = document.querySelectorAll('.carousel-stores');
   emblaNodes.forEach((carousel) => {
-    EmblaCarousel(carousel as HTMLElement, options, plugins);
+    EmblaCarousel(carousel as HTMLElement, OPTIONS, plugins);
   });
 </script>
