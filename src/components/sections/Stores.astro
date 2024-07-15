@@ -22,6 +22,22 @@ const {
 } = Astro.props;
 
 const optimizedBackgroundImage = await getImage({ src: background });
+
+const importedImages = await Astro.glob<{ default: ImageMetadata }>(
+  '/src/images/stores/*.{jpeg,jpg,png,gif,webp}'
+);
+
+const images = importedImages.map((file) => file.default);
+
+const itemsWithImage = stores.map((item) => {
+  const path = '/src/images/stores/' + item.imageName;
+  const image = images.find((img) => img.src.includes(path));
+
+  return {
+    ...item,
+    image,
+  };
+});
 ---
 
 <section
@@ -34,7 +50,7 @@ const optimizedBackgroundImage = await getImage({ src: background });
     {
       stores.length > 0 && (
         <div class='bg-white rounded-xl mb-8 px-8 py-4'>
-          <Carousel class='mb-8 mt-8' items={stores} type='stores' />
+          <Carousel class='mb-8 mt-8' items={itemsWithImage} type='stores' />
         </div>
       )
     }

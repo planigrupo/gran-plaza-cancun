@@ -2,34 +2,22 @@
 import type { Store } from 'src/data/stores';
 import CarouselSlide from './CarouselSlide.astro';
 
+interface StoreWithImage extends Store {
+  image: any;
+}
+
 interface Props {
   class?: string;
-  items: Store[];
+  items: StoreWithImage[];
   type: 'stores';
 }
 const { class: className, items, type } = Astro.props;
-
-const importedImages = await Astro.glob<{ default: ImageMetadata }>(
-  '/src/images/stores/*.{jpeg,jpg,png,gif,webp}'
-);
-
-const images = importedImages.map((file) => file.default);
-
-const itemsWithImage = items.map((item) => {
-  const path = '/src/images/stores/' + item.imageName;
-  const image = images.find((img) => img.src.includes(path));
-
-  return {
-    ...item,
-    image,
-  };
-});
 ---
 
 <div class:list={[className]} class='carousel-stores overflow-hidden'>
   <div class='flex -ml-4 items-center'>
     {
-      itemsWithImage.map(({ image, alt }) => (
+      items.map(({ image, alt }) => (
         <CarouselSlide image={image} type={type} alt={alt} />
       ))
     }

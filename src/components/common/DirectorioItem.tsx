@@ -1,27 +1,17 @@
 interface Props {
-  imageName: string;
+  image: any;
   title: string;
   categoria: string;
   color: string;
   horario: string;
 }
 
-const DirectorioItem = ({
-  imageName,
-  title,
-  categoria,
-  color,
-  horario,
-}: Props) => {
-  const imageSrc = imageName
-    ? `../../images/stores/${imageName}`
-    : `../../images/stores/404.png`;
-
+const DirectorioItem = ({ image, title, categoria, color, horario }: Props) => {
   return (
     <div className='group bg-white outline outline-1 outline-gray-200 aspect-square flex flex-col items-center relative justify-center p-8'>
       <img
         className='grayscale transition group-hover:grayscale-0'
-        src={imageSrc}
+        src={image.src}
         alt={`${title}-logo`}
         width={200}
         height={150}
