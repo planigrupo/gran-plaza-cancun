@@ -8,13 +8,29 @@ interface Props {
   type: 'stores';
 }
 const { class: className, items, type } = Astro.props;
+
+const importedImages = await Astro.glob<{ default: ImageMetadata }>(
+  '/src/images/stores/*.{jpeg,jpg,png,gif,webp}'
+);
+
+const images = importedImages.map((file) => file.default);
+
+const itemsWithImage = items.map((item) => {
+  const path = '/src/images/stores/' + item.imageName;
+  const image = images.find((img) => img.src.includes(path));
+
+  return {
+    ...item,
+    image,
+  };
+});
 ---
 
 <div class:list={[className]} class='carousel-stores overflow-hidden'>
   <div class='flex -ml-4 items-center'>
     {
-      items.map(({ imagePath, alt }) => (
-        <CarouselSlide imageUrl={imagePath} type={type} alt={alt} />
+      itemsWithImage.map(({ image, alt }) => (
+        <CarouselSlide image={image} type={type} alt={alt} />
       ))
     }
   </div>
