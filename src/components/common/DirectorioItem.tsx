@@ -11,7 +11,7 @@ const DirectorioItem = ({ image, title, categoria, color, horario }: Props) => {
     <div className='group bg-white outline outline-1 outline-gray-200 aspect-square flex flex-col items-center relative justify-center p-8'>
       <img
         className='grayscale transition group-hover:grayscale-0'
-        src={image}
+        src={image.src}
         alt={`${title}-logo`}
         width={200}
         height={150}
