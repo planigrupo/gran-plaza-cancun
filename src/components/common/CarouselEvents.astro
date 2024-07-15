@@ -11,7 +11,7 @@ const { class: className, images } = Astro.props;
 <div class:list={[className]} class='carousel overflow-hidden'>
   <div class='flex -ml-4'>
     {
-      Object.keys(images).map((image: any) => (
+      images.map((image: any) => (
         <div class='slide pl-4'>
           <Image
             src={image}

@@ -5,9 +5,12 @@ import LeftElement from '@components/common/LeftElement.astro';
 import TitleDivider from '@components/common/TitleDivider.astro';
 
 /* importing all images from the events folder */
-const images = import.meta.glob<{ default: ImageMetadata }>(
+
+const images = await Astro.glob(
   '/src/images/events/*.{jpeg,jpg,png,gif,webp}'
-);
+).then((files) => {
+  return files.map((file) => file.default);
+});
 
 interface Props {
   class?: string;

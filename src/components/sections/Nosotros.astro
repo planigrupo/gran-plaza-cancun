@@ -3,10 +3,11 @@ import Button from '@components/common/Button.astro';
 import TitleDivider from '@components/common/TitleDivider.astro';
 import ImagesGrid from '@components/common/ImagesGrid.astro';
 
-/* importing all images from the events folder */
-const homeGallery = import.meta.glob<{ default: ImageMetadata }>(
+const images = await Astro.glob(
   '/src/images/homeGallery/*.{jpeg,jpg,png,gif,webp}'
-);
+).then((files) => {
+  return files.map((file) => file.default);
+});
 
 interface Props {
   class?: string;
@@ -18,7 +19,7 @@ const { class: className } = Astro.props;
   <div class='container'>
     <TitleDivider class='text-secondary mb-8'> Nosotros </TitleDivider>
 
-    <ImagesGrid class='mb-8' images={homeGallery} enableThreeColumns />
+    <ImagesGrid class='mb-8' images={images} enableThreeColumns />
     <div class='flex justify-center'>
       <Button
         variant='secondary'

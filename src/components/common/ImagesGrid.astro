@@ -15,7 +15,7 @@ const gridCols = enableThreeColumns
 
 <div class={`gap-4 grid ${gridCols} ${className}`}>
   {
-    Object.keys(images).map((image: any) => (
+    images.map((image: any) => (
       <Image
         src={image}
         alt=''
