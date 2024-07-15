@@ -1,5 +1,5 @@
 interface Props {
-  imagePath: string;
+  imageName: string;
   title: string;
   categoria: string;
   color: string;
@@ -7,14 +7,14 @@ interface Props {
 }
 
 const DirectorioItem = ({
-  imagePath,
+  imageName,
   title,
   categoria,
   color,
   horario,
 }: Props) => {
-  const imageSrc = imagePath
-    ? `../../images/stores/${imagePath}`
+  const imageSrc = imageName
+    ? `../../images/stores/${imageName}`
     : `../../images/stores/404.png`;
 
   return (

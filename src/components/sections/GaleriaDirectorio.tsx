@@ -169,7 +169,7 @@ const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
               <DirectorioItem
                 color={CATEGORY_COLORS[store.categoria] || 'bg-gray-500'}
                 {...store}
-                key={store.imagePath || store.title}
+                key={store.imageName || store.title}
               />
             ))}
           </div>
