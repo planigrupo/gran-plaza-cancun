@@ -8,11 +8,20 @@ const importedImages = await Astro.glob<{ default: ImageMetadata }>(
   '/src/images/stores/*.{jpeg,jpg,png,gif,webp}'
 );
 
-const images = importedImages.map((file) => file.default);
+const images = await importedImages.map((file) => file.default);
 
 const itemsWithImage = stores.map((item) => {
-  const path = '/src/images/stores/' + item.imageName;
-  const image = images.find((img) => img.src.includes(path));
+  // remove extension from item.imageName
+  const imageNameWithoutExtension = item.imageName.replace(/\.[^/.]+$/, '');
+
+  /**
+   * img.src looks like this when generated: /_astro/logo-miniso.DQyMBRQp.png
+   * We just find an image.src that incluses the `imageNameWithoutExtension`
+   * in the string to add it to a new items array
+   */
+  const image = images.find((img) =>
+    img.src.includes(imageNameWithoutExtension)
+  );
 
   return {
     ...item,
