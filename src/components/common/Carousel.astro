@@ -23,7 +23,6 @@ const { class: className, items, type } = Astro.props;
 <script>
   import EmblaCarousel, { type EmblaOptionsType } from 'embla-carousel';
   import Autoplay from 'embla-carousel-autoplay';
-  import AutoScroll from 'embla-carousel-auto-scroll';
 
   const AUTOPLAY_SPEED_IN_SECONDS = 4;
 
@@ -37,7 +36,6 @@ const { class: className, items, type } = Astro.props;
       delay: AUTOPLAY_SPEED_IN_SECONDS * 1000,
       stopOnInteraction: false,
     }),
-    AutoScroll({ startDelay: 0, speed: 1 }),
   ];
 
   const emblaNodes = document.querySelectorAll('.carousel-stores');
