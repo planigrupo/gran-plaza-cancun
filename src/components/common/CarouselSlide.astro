@@ -10,16 +10,19 @@ interface Props {
 const { image, type, alt } = Astro.props;
 ---
 
-<div class=`slide pl-4 ${type}`>
-  <Image
-    width={200}
-    height={200}
-    src={image}
-    alt={alt || ''}
-    class='w-full rounded-xl'
-  />
-</div>
-
+  {
+    image && (
+      <div class=`slide pl-4 ${type}`>
+        <Image
+          width={200}
+          height={200}
+          src={image}
+          alt={alt || ''}
+          class='w-full rounded-xl'
+        />
+      </div>
+    )
+  }
 <style>
   .slide {
     --slide-items: 1;
