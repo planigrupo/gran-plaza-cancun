@@ -14,8 +14,8 @@ const DirectorioItem = ({
   horario,
 }: Props) => {
   const imageSrc = imagePath
-    ? `/src/images/stores/${imagePath}`
-    : `/src/images/stores/404.png`;
+    ? `../../images/stores/${imagePath}`
+    : `../../images/stores/404.png`;
 
   return (
     <div className='group bg-white outline outline-1 outline-gray-200 aspect-square flex flex-col items-center relative justify-center p-8'>
