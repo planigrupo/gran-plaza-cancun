@@ -1,5 +1,5 @@
 interface Props {
-  image: any;
+  image?: any;
   title: string;
   categoria: string;
   color: string;
