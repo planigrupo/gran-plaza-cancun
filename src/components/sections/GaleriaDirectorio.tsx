@@ -18,9 +18,13 @@ const CATEGORY_COLORS = {
   Otros: 'bg-gray-500',
 };
 
+interface StoreWithImage extends Store {
+  image: any;
+}
+
 interface Props {
   className: string;
-  stores: Store[];
+  stores: StoreWithImage[];
 }
 
 const GaleriaDirectorio: React.FC<Props> = ({ className, stores }) => {
