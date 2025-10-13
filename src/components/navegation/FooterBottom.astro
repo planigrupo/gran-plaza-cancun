@@ -1,0 +1,36 @@
+---
+import logoFooter from '../../assets/logos/logo.png';
+import logoPlanigrupo from '../../assets/logos/logo-bw-pg.png';
+
+const navLinks = [
+  { label: "Nosotros", href: "https://planigrupo.com.mx/nosotros/" },
+  { label: "Portafolio", href: "https://planigrupo.com.mx/portafolio/" },
+  { label: "Comercialización", href: "https://planigrupo.com.mx/comercializacion/" },
+  { label: "Inversionistas", href: "https://planigrupo.com.mx/inversionistas/" },
+  { label: "Contacto", href: "https://planigrupo.com.mx/contacto/" },
+];
+---
+
+<footer class="bg-black text-white py-8">
+  <div
+    class="container max-w-5xl mx-auto flex flex-col items-center gap-8 lg:gap-12 lg:flex-row justify-between"
+  >
+    <!-- Logos -->
+    <div class="flex items-center justify-center gap-6">
+      <img src={logoFooter.src} alt="Logo Gran Plaza" class="w-28" />
+      <div class="border-l border-white h-24 block"></div>
+      <img src={logoPlanigrupo.src} alt="Logo Planigrupo" class="w-28" />
+    </div>
+
+    <!-- Navegación -->
+    <nav
+      class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-center"
+    >
+      {
+        navLinks.map((link) => (
+          <a href={link.href} target="_blank" class="hover:underline"> {link.label} </a>
+        ))
+      }
+    </nav>
+  </div>
+</footer>

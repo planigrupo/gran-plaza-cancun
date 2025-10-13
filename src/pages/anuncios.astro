@@ -1,0 +1,28 @@
+---
+import BannerText from "../components/ui/BannerText.astro";
+import Layout from "../layouts/Layout.astro";
+
+import ad_1 from "../assets/banner_ads/1.jpg";
+
+const ads = [
+  { src: ad_1.src },
+];
+---
+
+<Layout title='Anuncios'>
+  <BannerText title="Anuncios" />
+
+    <div class="py-16">
+      <div class="px-10 grid gap-4 justify-items-center mx-auto max-w-6xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          ads.map((ad) => (
+            <img
+              src={ad.src}
+              alt="Evento"
+              class="w-[55rem] object-contain rounded"
+            />
+          ))
+        }
+      </div>
+  </div>
+</Layout>

@@ -1,0 +1,47 @@
+---
+const {
+  label,
+  link,
+  bgColor,
+  textColor,
+  borderColor,
+  textHoverColor,
+  hoverBgColor,
+} = Astro.props;
+---
+
+<a
+  href={link}
+  class="relative inline-block px-6 py-3 font-medium overflow-hidden group rounded-md custom-button"
+  style={`
+    --bg-color: ${bgColor};
+    --text-color: ${textColor};
+    --border-color: ${borderColor};
+    --text-hover-color: ${textHoverColor};
+    --hover-bg-color: ${hoverBgColor};
+  `}
+>
+  <!-- Fondo configurable al hacer hover -->
+  <span
+    class="absolute inset-0 scale-y-0 origin-bottom transition-transform duration-300 ease-in-out group-hover:scale-y-100"
+    style="background-color: var(--hover-bg-color);"></span>
+
+  <!-- Texto del botón -->
+  <span class="relative z-10 text-lg group-hover:text-[var(--text-hover-color)]"
+    >{label}</span
+  >
+</a>
+
+<style>
+  .custom-button {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease;
+  }
+  .custom-button:hover {
+    color: var(--text-hover-color);
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+const {
+  background,
+  persons,
+  heroText,
+  waveElement,
+  className = "",
+} = Astro.props;
+---
+
+<section
+  class={`relative bg-cover bg-right flex flex-col-reverse items-end justify-end px-10 pt-24 max-h-[760px] md:flex-row md:items-center md:pt-0 lg:justify-center ${className}`}
+  style={`background-image: url(${background});`}
+>
+  <!-- Imagen de personas -->
+  <div class="w-full md:w-1/2 flex justify-end md:justify-end">
+    <img
+      src={persons}
+      alt="Personas"
+      class="w-full max-w-sm md:max-w-md lg:max-w-xl"
+    />
+  </div>
+
+  <!-- Texto -->
+  <div
+    class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left space-y-6"
+  >
+    <img
+      src={heroText}
+      alt="Texto principal"
+      class="w-full z-10 max-w-lg mx-auto md:mx-0"
+    />
+  </div>
+
+  <!-- Wave element (opcional) -->
+  {
+    waveElement && (
+      <div class="absolute right-0 bottom-0 flex justify-end translate-y-1/4 pointer-events-none">
+        <img
+          src={waveElement}
+          alt="wave element"
+          class="w-[15rem] md:w-lg lg:w-3xl"
+        />
+      </div>
+    )
+  }
+</section>

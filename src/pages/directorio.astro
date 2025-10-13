@@ -1,40 +1,190 @@
 ---
-import Layout from 'src/layouts/Layout.astro';
-import GaleriaDirectorio from '@components/sections/GaleriaDirectorio';
-import PageHero from '@components/common/PageHero.astro';
-import { stores } from 'src/data/stores.js';
+import BannerText from "../components/ui/BannerText.astro";
+import Layout from "../layouts/Layout.astro";
+import { stores, categories } from "../assets/data";
+import Icon from "../components/ui/Icon.astro";
 
-const importedImages = await Astro.glob<{ default: ImageMetadata }>(
-  '/src/images/stores/*.{jpeg,jpg,png,gif,webp}'
-);
-
-const images = await importedImages.map((file) => file.default);
-
-const itemsWithImage = stores.map((item) => {
-  // remove extension from item.imageName
-  const imageNameWithoutExtension = item.imageName.replace(/\.[^/.]+$/, '');
-
-  /**
-   * img.src looks like this when generated: /_astro/logo-miniso.DQyMBRQp.png
-   * We just find an image.src that incluses the `imageNameWithoutExtension`
-   * in the string to add it to a new items array
-   */
-  const image = images.find((img) =>
-    img.src.includes(imageNameWithoutExtension)
-  );
-
-  return {
-    ...item,
-    image,
-  };
-});
+import mapa from '/src/assets/mapa.jpg';
+import placeholder404 from "../assets/stores/404.png";
 ---
 
-<Layout title='Directorio'>
-  <PageHero title='Directorio' />
-  <GaleriaDirectorio
-    client:visible
-    className='py-12 md:py-16 lg:py-24'
-    stores={itemsWithImage}
-  />
+<Layout title="Directorio">
+  
+  <BannerText title="Directorio" />
+
+  <!-- Filtros: búsqueda con icono + dropdown + botón de mapa -->
+  <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 py-8 max-w-6xl mx-auto w-full px-4">
+    
+    <!-- Input con borde bottom y icono -->
+    <div class="relative w-full sm:w-64">
+      <input
+        id="nameSearch"
+        type="text"
+        placeholder="Buscar por nombre..."
+        class="w-full border-b border-gray-400 focus:border-gray-700 outline-none py-2 pl-8 pr-2 text-sm"
+      />
+      <Icon
+        name="search"
+        class="absolute z-10 left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none"
+      />
+    </div>
+
+    <!-- Dropdown -->
+    <select id="categorySelect" class="border border-gray-500 px-4 py-2 text-gray-600 text-sm w-full sm:w-auto">
+      <option value="Todos">Todos</option>
+      {categories.map((cat) => (
+        <option value={cat}>{cat}</option>
+      ))}
+    </select>
+
+    <!-- Botón de Mapa -->
+    <button id="showMapBtn" class="relative overflow-hidden px-6 py-2 font-medium border border-[#D41D69] text-[#D41D69] bg-transparent group w-full sm:w-auto">
+      <span class="relative z-10 group-hover:text-white transition-colors duration-300">Mapa</span>
+      <span class="absolute inset-0 bg-[#D41D69] translate-y-full group-hover:-translate-y-0 transition-transform duration-300 ease-out z-0"></span>
+    </button>
+  </div>
+
+  <!-- Contenedor de stores -->
+  <div
+    id="storesGrid"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center place-items-center w-full max-w-6xl mx-auto gap-y-12 gap-x-6 sm:gap-x-10 lg:gap-x-20 py-16 px-4"
+  >
+    {stores.map((store) => (
+      <div
+        class="store relative group w-full max-w-xs h-56 flex items-center justify-center overflow-hidden rounded-xl opacity-100 transition-opacity duration-500"
+        data-category={store.category}
+        data-name={store.title.toLowerCase()}
+      >
+        <img
+          src={store.image ? store.image.src : placeholder404.src}
+          alt={store.title}
+          class="w-full h-full object-contain transition-all duration-500 grayscale group-hover:grayscale-0"
+        />
+
+        <!-- Overlay negro -->
+        <div class="absolute inset-0 bg-gray/60 group-hover:bg-black/0 transition-all duration-500"></div>
+
+        <span class="absolute top-2 right-2 text-xs font-medium text-gray-700 bg-gray-200/80 backdrop-blur-sm px-2 py-1 rounded-md shadow-sm">
+          {store.title}
+        </span>
+
+        <span class="absolute bottom-2 left-2 text-xs text-white bg-black/70 px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {store.horario}
+        </span>
+      </div>
+    ))}
+  </div>
+
+  <!-- Modal para mostrar mapa -->
+  <div id="mapModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
+    <div id="mapContainer" class="relative max-w-full max-h-full overflow-auto cursor-zoom-in p-4">
+      <!-- Imagen del mapa -->
+      <img
+        id="mapImage"
+        src={mapa.src}
+        alt="Mapa completo"
+        class="rounded-md shadow-lg transition-transform duration-300 ease-out"
+      />
+      <!-- Botón de cierre -->
+      <button
+        id="closeMapBtn"
+        class="fixed top-6 right-6 bg-red-50 rounded-full p-1 shadow-lg hover:bg-red-100 transition"
+      >
+        <Icon name="close" class="size-10 text-red-700" />
+      </button>
+    </div>
+  </div>
 </Layout>
+
+<script>
+  // --- Elements ---
+  const select = document.getElementById('categorySelect') as HTMLSelectElement;
+const searchInput = document.getElementById('nameSearch') as HTMLInputElement;
+const storesGrid = document.getElementById('storesGrid') as HTMLElement;
+const showMapBtn = document.getElementById('showMapBtn')!;
+const closeMapBtn = document.getElementById('closeMapBtn')!;
+const mapModal = document.getElementById('mapModal')!;
+const mapContainer = document.getElementById('mapContainer')!;
+const mapImage = document.getElementById('mapImage')!;
+const storesElements = Array.from(document.querySelectorAll('.store')) as HTMLElement[];
+
+
+  // --- Filter Stores ---
+  const filterStores = () => {
+    const category = select.value;
+    const search = searchInput.value.toLowerCase();
+
+    storesElements.forEach(el => {
+      const matchesCategory = category === 'Todos' || el.dataset.category === category;
+      const matchesSearch = el.dataset.name!.includes(search);
+
+      if (matchesCategory && matchesSearch) {
+        el.style.display = 'flex';
+        el.style.opacity = '0';
+        requestAnimationFrame(() => {
+          el.style.transition = 'opacity 0.3s ease-in-out';
+          el.style.opacity = '1';
+        });
+      } else {
+        el.style.transition = 'opacity 0.3s ease-in-out';
+        el.style.opacity = '0';
+        setTimeout(() => { el.style.display = 'none'; }, 300);
+      }
+    });
+  };
+
+  select.addEventListener('change', filterStores);
+  searchInput.addEventListener('input', filterStores);
+
+  // --- Map Modal ---
+  let zoomed = false;
+
+  const openMap = () => {
+    storesGrid.style.display = 'none';
+    mapModal.classList.remove('hidden');
+    mapModal.classList.add('flex');
+    document.body.classList.add('overflow-hidden');
+  };
+
+  const closeMap = () => {
+    mapModal.classList.add('hidden');
+    mapModal.classList.remove('flex');
+    storesGrid.style.display = 'grid';
+    document.body.classList.remove('overflow-hidden');
+    mapImage.style.transform = 'scale(1)';
+    mapImage.style.transformOrigin = 'center center';
+    zoomed = false;
+    mapContainer.classList.add('cursor-zoom-in');
+    mapContainer.classList.remove('cursor-zoom-out');
+    mapContainer.scrollTop = 0;
+    mapContainer.scrollLeft = 0;
+  };
+
+  showMapBtn.addEventListener('click', openMap);
+  closeMapBtn.addEventListener('click', closeMap);
+  mapModal.addEventListener('click', (e) => { if (e.target === mapModal) closeMap(); });
+
+  // --- Zoom & Scroll ---
+  mapImage.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const rect = mapImage.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    if (!zoomed) {
+      mapImage.style.transformOrigin = `${x}% ${y}%`;
+      mapImage.style.transform = 'scale(2)';
+      zoomed = true;
+      mapContainer.classList.remove('cursor-zoom-in');
+      mapContainer.classList.add('cursor-zoom-out');
+    } else {
+      mapImage.style.transformOrigin = 'center center';
+      mapImage.style.transform = 'scale(1)';
+      zoomed = false;
+      mapContainer.classList.add('cursor-zoom-in');
+      mapContainer.classList.remove('cursor-zoom-out');
+      mapContainer.scrollTop = 0;
+      mapContainer.scrollLeft = 0;
+    }
+  });
+</script>
