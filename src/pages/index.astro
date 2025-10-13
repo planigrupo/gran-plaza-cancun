@@ -1,31 +1,83 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '@components/sections/Hero.astro';
-import Events from '@components/sections/Events.astro';
-import Stores from '@components/sections/Stores.astro';
-import { stores } from 'src/data/stores.js';
-import Nosotros from '@components/sections/Nosotros.astro';
+import Layout from "../layouts/Layout.astro";
+import HomeHero from "../components/HomeHero.astro";
+import CarouselEvents from "../components/CarouselEvents.astro";
+import CarouselStore from "../components/CarouselStore.astro";
+import Button from "../components/ui/Button.astro";
+
+import background from "../assets/background/bg-home.png";
+import persons from "../assets/personas.png";
+import heroText from "../assets/hero-text.png";
+import homeWave from "../assets/wave_1.png";
+import homeWave2 from "../assets/wave_2.png";
+
+import event_1 from "../assets/events/1.jpg";
+
+import face_1 from "../assets/gallery/1.jpg";
+import face_2 from "../assets/gallery/2.png";
+import face_3 from "../assets/gallery/3.jpg";
+import face_4 from "../assets/gallery/4.jpg";
+import face_5 from "../assets/gallery/5.jpg";
+import face_6 from "../assets/gallery/6.jpg";
+
+const events = [
+  { src: event_1.src },
+];
+
+const gallery = [
+  { src: face_1.src },
+  { src: face_2.src },
+  { src: face_3.src },
+  { src: face_4.src },
+  { src: face_5.src },
+  { src: face_6.src },
+];
 ---
 
-<Layout title='Home | Gran Plaza Cancun'>
-  <main>
-    <Hero />
+<Layout title={"Inicio | Plaza Real Saltillo"}>
+  <HomeHero
+    background={background.src}
+    persons={persons.src}
+    heroText={heroText.src}
+    waveElement={homeWave.src}
+  />
 
-    <Events
-      class='relative pt-16 pb-12 md:pt-32 md:pb-16 lg:pt-40 lg:pb-28'
-      title='Eventos'
-      buttonLink='/eventos'
-      buttonText='Ver Eventos'
-    />
+  <CarouselEvents images={events} waveElement={homeWave2.src} />
 
-    <Stores
-      title='Nuestras Tiendas'
-      stores={stores}
-      class='pt-16 pb-12 md:pt-32 md:pb-16 lg:pt-24 lg:pb-24'
-      buttonLink='/directorio'
-      buttonText='Ver Tiendas'
-    />
+  <CarouselStore />
 
-    <Nosotros class='py-12 md:py-16 lg:py-28' />
-  </main>
+  <div class="-translate-y-10 pb-16">
+    <h2 class="text-center text-5xl font-bold text-[#70E000] mb-12">
+      Nosotros
+    </h2>
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto px-4"
+    >
+      {
+        gallery.map((item) => (
+          <div class="overflow-hidden rounded-2xl shadow-lg">
+            <img
+              src={item.src}
+              alt="Gallery Image"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="flex justify-center mt-12">
+      <Button
+        label="MÁS FOTOS"
+        link="https://www.facebook.com/cancungranplaza/photos_albums"
+        bgColor="#70E000"
+        borderColor="#70E000"
+        textColor="white"
+        
+        textHoverColor="#70E000"
+        hoverBgColor="white"
+      />
+    </div>
+  </div>
 </Layout>

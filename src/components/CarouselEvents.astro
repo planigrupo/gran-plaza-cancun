@@ -1,0 +1,156 @@
+---
+import Button from "./ui/Button.astro";
+
+interface ImageItem {
+  src: string;
+}
+
+const { images = [], waveElement } = Astro.props as {
+  images: ImageItem[];
+  waveElement?: string;
+};
+---
+
+<section class="relative overflow-hidden text-center pt-16 pb-56">
+  <h1 class="text-[#7209B7] font-bold text-3xl lg:text-6xl mb-10">Eventos</h1>
+
+  <div class="max-w-8xl mx-auto overflow-hidden">
+    <div
+      id="carousel"
+      class="flex transition-transform duration-[1200ms] ease-in-out"
+    >
+      {
+        images.length > 2
+          ? [...images, images[0]].map((image, index) => (
+              <div class="min-w-full sm:min-w-[50%] lg:min-w-[33.333%] flex justify-center items-center px-5">
+                <img
+                  src={image.src}
+                  alt={`Evento ${index + 1}`}
+                  class="rounded-xl shadow-lg w-full"
+                  loading="lazy"
+                />
+              </div>
+            ))
+          : images.map((image, index) => (
+              <div class="flex justify-center items-center px-5 w-full">
+                <img
+                  src={image.src}
+                  alt={`Evento ${index + 1}`}
+                  class="rounded-xl shadow-lg max-w-[30rem]"
+                  loading="lazy"
+                />
+              </div>
+            ))
+      }
+    </div>
+  </div>
+
+  <div class="flex justify-center mt-12">
+    <Button
+      label="VER EVENTOS"
+      link="/eventos"
+      bgColor="white"
+      borderColor="#FB8B24"
+      textColor="#FB8B24"
+      textHoverColor="white"
+      hoverBgColor="#FB8B24"
+    />
+  </div>
+
+  {
+    waveElement && (
+      <div class="absolute z-10 left-0 bottom-24 translate-y-1/3 pointer-events-none">
+        <img src={waveElement} alt="wave element" class="w-[40%] max-w-7xl" />
+      </div>
+    )
+  }
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const carousel = document.getElementById("carousel");
+    if (!carousel) return;
+
+    const items = Array.from(carousel.children);
+    const totalItems = items.length; // incluye el clon
+    const itemsPerPage = 3;
+
+    // 🚨 Si hay 3 o menos imágenes (sin contar el clon), no activar carrusel
+    if (items.length <= itemsPerPage) {
+      return;
+    }
+
+    let currentIndex = 0;
+    let isTransitioning = false;
+
+    const updateCarousel = () => {
+      const translateX = -(currentIndex * (100 / itemsPerPage));
+      carousel.style.transform = `translateX(${translateX}%)`;
+    };
+
+    const nextSlide = () => {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      currentIndex++;
+      updateCarousel();
+
+      if (currentIndex === totalItems - 1) {
+        setTimeout(() => {
+          carousel.style.transition = "none";
+          currentIndex = 0;
+          updateCarousel();
+          void carousel.offsetWidth;
+          carousel.style.transition = "transform 1200ms ease-in-out";
+        }, 1200);
+      }
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 1200);
+    };
+
+    let interval = setInterval(nextSlide, 3000);
+
+    window.addEventListener("resize", () => {
+      clearInterval(interval);
+      currentIndex = 0;
+      carousel.style.transition = "none";
+      updateCarousel();
+      void carousel.offsetWidth;
+      carousel.style.transition = "transform 1200ms ease-in-out";
+      interval = setInterval(nextSlide, 3000);
+    });
+
+    // --- Swipe / Drag support ---
+    let startX = 0;
+    let isDragging = false;
+
+    const handleStart = (e) => {
+      clearInterval(interval);
+      isDragging = true;
+      startX = e.touches ? e.touches[0].clientX : e.clientX;
+    };
+
+    const handleMove = (e) => {
+      if (!isDragging) return;
+      const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+      const diff = currentX - startX;
+      if (Math.abs(diff) > 50) {
+        isDragging = false;
+        diff < 0 ? nextSlide() : (currentIndex = Math.max(0, currentIndex - 1));
+        updateCarousel();
+        interval = setInterval(nextSlide, 3000);
+      }
+    };
+
+    const handleEnd = () => (isDragging = false);
+
+    carousel.addEventListener("mousedown", handleStart);
+    carousel.addEventListener("touchstart", handleStart);
+    carousel.addEventListener("mousemove", handleMove);
+    carousel.addEventListener("touchmove", handleMove);
+    carousel.addEventListener("mouseup", handleEnd);
+    carousel.addEventListener("mouseleave", handleEnd);
+    carousel.addEventListener("touchend", handleEnd);
+  });
+</script>

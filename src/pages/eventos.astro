@@ -1,20 +1,28 @@
 ---
-import Layout from 'src/layouts/Layout.astro';
-import PageHero from '@components/common/PageHero.astro';
-import ImageGrid from '@components/common/ImagesGrid.astro';
+import BannerText from "../components/ui/BannerText.astro";
+import Layout from "../layouts/Layout.astro";
 
-const images = await Astro.glob(
-  '/src/images/events/*.{jpeg,jpg,png,gif,webp}'
-).then((files) => {
-  return files.map((file) => file.default);
-});
+import event_1 from "../assets/events/1.jpg";
+
+const events = [
+  { src: event_1.src },
+];
 ---
 
 <Layout title='Eventos'>
-  <PageHero title='Eventos' />
-  <section class='py-12 md:py-16 lg:py-28'>
-    <div class='container'>
-      <ImageGrid images={images} enableThreeColumns />
+  <BannerText title="Eventos" />
+
+  <div class="py-16">
+    <div class="px-10 grid gap-4 justify-items-center mx-auto max-w-6xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        events.map((event) => (
+          <img
+            src={event.src}
+            alt="Evento"
+            class="w-[55rem] rounded"
+          />
+        ))
+      }
     </div>
-  </section>
+  </div>
 </Layout>

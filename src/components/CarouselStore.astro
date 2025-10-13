@@ -1,0 +1,108 @@
+---
+import { stores } from "../assets/data";
+import Button from "./ui/Button.astro";
+
+import bgShop from '../assets/background/bg-shops.png';
+
+// Duplicamos los logos para animación continua
+const logos = [...stores, ...stores];
+---
+
+<section
+  class="w-full h-auto bg-cover bg-center -translate-y-24 py-12"
+  style={`background-image: url(${bgShop.src});`}
+>
+  <h2 class="text-center text-5xl font-bold text-white mb-8">
+    Nuestras tiendas
+  </h2>
+
+  <div
+    class="overflow-hidden max-w-[90%] mx-auto rounded-2xl bg-white relative"
+  >
+    <div class="slider flex">
+      {
+        logos
+          .filter((store) => store.image && store.image !== "")
+          .map((store) => (
+            <div class="slide flex-none w-full sm:w-full md:w-1/4 flex items-center justify-center p-4 sm:p-6 rounded-2xl">
+              <a href="/tiendas">
+                <img
+                  src={store.image.src}
+                  alt={store.title || "Store Image"}
+                  class="object-contain w-full h-[250px] sm:h-[200px] md:h-40"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          ))
+      }
+    </div>
+  </div>
+
+  <div class="flex justify-center mt-8">
+    <Button
+      label="VER TIENDAS"
+      link="/directorio"
+      bgColor="white"
+      textColor="#FB8500"
+      borderColor="white"
+      textHoverColor="white"
+      hoverBgColor="#FB8500"
+    />
+  </div>
+</section>
+
+<style>
+  /* Slider fluido desktop */
+  .slider {
+    display: flex;
+    gap: 1.5rem;
+    animation: slideDesktop 20s linear infinite;
+  }
+
+  /* Animación continua desktop */
+  @keyframes slideDesktop {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    } /* mitad del array duplicado */
+  }
+
+  /* Mobile & tablet: touch scroll con animación más rápida */
+  @media (max-width: 1024px) {
+    .slider {
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      animation: slideMobile 10s linear infinite;
+    }
+
+    .slider > .slide {
+      flex: 0 0 90%; /* 1 logo visible grande */
+      max-width: 90%;
+      scroll-snap-align: start;
+    }
+
+    img {
+      height: 250px !important;
+    }
+  }
+
+  /* Animación más rápida para mobile */
+  @keyframes slideMobile {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Ajuste general */
+  .slider > .slide {
+    flex-shrink: 0;
+  }
+</style>

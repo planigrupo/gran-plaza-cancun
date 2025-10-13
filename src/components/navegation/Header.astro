@@ -1,0 +1,117 @@
+---
+import logoHeader from '../../assets/logos/logo.png';
+---
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 w-full z-50 transition-colors duration-300"
+>
+  <div
+    class="container mx-auto flex items-center justify-between lg:justify-center py-4 px-6 md:px-12"
+  >
+    <!-- Links left -->
+    <ul class="hidden md:flex gap-8 items-center">
+      <li><a href="/directorio" class="font-medium text-md text-white hover:text-[#CAF0F8] transition-all">Directorio</a></li>
+      <li><a href="/eventos" class="font-medium text-md text-white hover:text-[#CAF0F8] transition-all">Eventos</a></li>
+    </ul>
+
+    <!-- Logo center -->
+    <a href="/" class="z-20 mx-4 md:mx-6">
+      <img
+        src={logoHeader.src}
+        alt="Logo"
+        class="w-16 h-16 md:w-20 md:h-20"
+      />
+    </a>
+
+    <!-- Links right -->
+    <ul class="hidden md:flex gap-8 items-center">
+      <li><a href="/anuncios" class="font-medium text-md text-white hover:text-[#CAF0F8] transition-all">Anuncios</a></li>
+      <li><a href="#footer" class="font-medium text-md text-white hover:text-[#CAF0F8] transition-all">Contacto</a></li>
+    </ul>
+
+    <!-- Hamburger for mobile -->
+    <button
+      id="hamburger"
+      class="flex flex-col justify-center items-center w-8 h-10 gap-2 md:hidden z-30 text-white focus:outline-none"
+    >
+      <span class="block w-full h-0.5 bg-current transition-transform duration-300"></span>
+      <span class="block w-full h-0.5 bg-current transition-opacity duration-300"></span>
+      <span class="block w-full h-0.5 bg-current transition-transform duration-300"></span>
+    </button>
+
+    <!-- Mobile Menu -->
+    <ul
+      id="menu"
+      class="fixed inset-0 flex flex-col items-center justify-center gap-6 bg-black text-white text-3xl font-bold uppercase transform translate-x-full transition-transform duration-300 md:hidden"
+    >
+      <li><a href="/directorio">Directorio</a></li>
+      <li><a href="/eventos">Eventos</a></li>
+      <li><a href="/anuncios">Anuncios</a></li>
+      <li><a href="#footer">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<script type="module">
+  const hamburger = document.getElementById("hamburger");
+  const menu = document.getElementById("menu");
+  const navbar = document.getElementById("navbar");
+  const currentPath = window.location.pathname;
+  const navLinks = document.querySelectorAll("nav a");
+  let scrollPosition = 0;
+
+  // Toggle mobile menu
+  hamburger.addEventListener("click", () => {
+    const isOpen = !menu.classList.contains("translate-x-full");
+    menu.classList.toggle("translate-x-full");
+
+    // Hamburger ↔ X animation
+    const spans = hamburger.querySelectorAll("span");
+    spans[0].classList.toggle("rotate-65");
+    spans[0].classList.toggle("translate-y-1.5");
+    spans[1].classList.toggle("opacity-0");
+    spans[2].classList.toggle("-rotate-65");
+    spans[2].classList.toggle("-translate-y-1.5");
+
+    // Bloquear scroll cuando el menú está abierto
+    if (!isOpen) {
+      scrollPosition = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollPosition}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+    } else {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      window.scrollTo(0, scrollPosition);
+    }
+  });
+
+  // Glass effect on scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 10) {
+      navbar.classList.add("backdrop-blur-md", "bg-black/30");
+    } else {
+      navbar.classList.remove("backdrop-blur-md", "bg-black/30");
+    }
+  });
+
+navLinks.forEach((link) => {
+  const href = link.getAttribute("href");
+  const linkPath = href.split("#")[0].replace(/\/$/, "");
+  const current = currentPath.replace(/\/$/, "");
+
+  // Si el enlace apunta a #footer, no lo marques como activo
+  if (href.startsWith("#footer")) return;
+
+  if (linkPath === current) {
+    link.classList.add("text-[#CAF0F8]", "font-semibold");
+    link.classList.remove("text-white");
+  } else {
+    link.classList.remove("text-[#CAF0F8]", "font-semibold");
+    link.classList.add("text-white");
+  }
+});
+
+</script>
+
